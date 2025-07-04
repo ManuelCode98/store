@@ -1,4 +1,4 @@
-import { pool } from "../connectionDb";
+import { pool } from "../../connectionDb";
 
 const createProductService = async( req:any, res:any )=>{ 
 
@@ -52,8 +52,12 @@ const createProductService = async( req:any, res:any )=>{
             material
         ]
     );
-
-    res.status(200).json( rows[0] );
+    
+    if( !rows.length ){
+        res.status(404).send(`No pudimos crear el producto...`);
+        return
+    }
+    res.status(200).json( {message: `Se creo el producto de manera exitosa `,data:rows[0]} );
 
     } catch (error) {
         res.status(409).send( error ) ;

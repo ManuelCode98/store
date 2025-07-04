@@ -1,8 +1,8 @@
-import { createProductService } from "../services/createProduct.service";
-import { deleteProductService } from "../services/deleteProduct.service";
-import { getProductService } from "../services/getProduct.service";
-import { getProductsService } from "../services/getProducts.service";
-import { updateProductService } from "../services/updateProduct.service";
+import { createProductService } from "../../services/inventory.services/createProduct.service";
+import { deleteProductService } from "../../services/inventory.services/deleteProduct.service";
+import { getProductService } from "../../services/inventory.services/getProduct.service";
+import { getProductsService } from "../../services/inventory.services/getProducts.service";
+import { updateProductService } from "../../services/inventory.services/updateProduct.service";
 
 
 const controllers = {
