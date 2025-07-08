@@ -11,10 +11,10 @@ const optimizeImageService = async( image:any ) => {
             quality: 0.6,
             maxWidth: 500,
             maxHeight: 500,
-            success: ( result )=>{
+            success: ( result:any )=>{
                 resolv( result );
             },
-            error: ( err )=>{
+            error: ( err:any )=>{
 
                 swal.fire({
                     text: 'Error al comprimir la imagen!',
