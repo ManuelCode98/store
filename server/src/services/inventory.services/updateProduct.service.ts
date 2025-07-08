@@ -11,12 +11,14 @@ const updateProductService = async( req:any, res:any )=>{
         description, 
         size, 
         color, 
-        gender, 
-        price, 
-        amount, 
-        photo, 
-        asset, 
-        material
+        gender,
+        purchase_price,
+        sale_price,
+        amount,
+        photo,
+        asset,
+        material,
+        supplier_name
     } = req.body;
 
 
@@ -31,25 +33,30 @@ const updateProductService = async( req:any, res:any )=>{
             size = $5, 
             color = $6, 
             gender = $7, 
-            price = $8, 
-            amount = $9, 
-            photo = $10, 
-            asset = $11, 
-            material = $12
-            WHERE id = $13
+            purchase_price = $8,
+            sale_price = $9, 
+            amount = $10, 
+            photo = $11, 
+            asset = $12, 
+            material = $13
+            supplier_name = $14
+            WHERE id = $15
             RETURNING *
         `,[  
             product_name, 
-            model, category, 
+            model, 
+            category, 
             description, 
             size, 
             color, 
-            gender, 
-            price, 
-            amount, 
-            photo, 
-            asset, 
+            gender,
+            purchase_price,
+            sale_price,
+            amount,
+            photo,
+            asset,
             material,
+            supplier_name,
             id 
         ]);
 

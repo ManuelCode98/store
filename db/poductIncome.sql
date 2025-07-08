@@ -1,5 +1,5 @@
-CREATE TABLE product (
-    id SERIAL PRIMARY KEY,
+CREATE TABLE product_income (
+    id INTEGER PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
     model VARCHAR(50),
     category VARCHAR(50),
@@ -7,9 +7,10 @@ CREATE TABLE product (
     size VARCHAR(15),
     color VARCHAR(50),
     gender VARCHAR(20),
-    price NUMERIC(10,2) NOT NULL,
+    purchase_price NUMERIC(10,2) NOT NULL,
+    sale_price NUMERIC(10,2) NOT NULL,
     amount INT NOT NULL DEFAULT 0,
     photo TEXT,
-    asset BOOLEAN DEFAULT TRUE,
-    material VARCHAR(100)
+    material VARCHAR(100),
+    supplier_name VARCHAR(100)
 );

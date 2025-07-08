@@ -17,7 +17,8 @@ const addSoldProductService = async( req:any, res:any )=>{
         sale_price,
         amount,
         photo,
-        material
+        material,
+        supplier_name
     } = req.body;
 
     try {
@@ -36,9 +37,10 @@ const addSoldProductService = async( req:any, res:any )=>{
                 sale_price,
                 amount,
                 photo,
-                material
+                material,
+                supplier_name
             ) 
-            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )
+            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 )
             RETURNING *
         `,
         [
@@ -54,7 +56,8 @@ const addSoldProductService = async( req:any, res:any )=>{
             sale_price,
             amount,
             photo,
-            material
+            material,
+            supplier_name
         ]
     );
     

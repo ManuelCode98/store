@@ -1,7 +1,7 @@
 import { pool } from "../../connectionDb";
 
 const createProductService = async( req:any, res:any )=>{ 
-
+console.log(req.body);
     const {
         product_name, 
         model, 
@@ -10,11 +10,13 @@ const createProductService = async( req:any, res:any )=>{
         size, 
         color, 
         gender,
-        price,
+        purchase_price,
+        sale_price,
         amount,
         photo,
         asset,
-        material
+        material,
+        supplier_name
     } = req.body;
 
     try {
@@ -28,13 +30,15 @@ const createProductService = async( req:any, res:any )=>{
                 size, 
                 color, 
                 gender,
-                price,
+                purchase_price,
+                sale_price,
                 amount,
                 photo,
                 asset,
-                material
+                material,
+                supplier_name
             ) 
-            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 )
+            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 )
             RETURNING *
         `,
         [
@@ -45,11 +49,13 @@ const createProductService = async( req:any, res:any )=>{
             size, 
             color, 
             gender,
-            price,
+            purchase_price,
+            sale_price,
             amount,
             photo,
             asset,
-            material
+            material,
+            supplier_name
         ]
     );
     

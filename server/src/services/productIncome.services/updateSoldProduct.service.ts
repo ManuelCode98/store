@@ -16,7 +16,8 @@ const updateSoldProductService = async( req:any, res:any )=>{
         sale_price, 
         amount, 
         photo, 
-        material
+        material,
+        supplier_name
     } = req.body;
 
 
@@ -36,7 +37,8 @@ const updateSoldProductService = async( req:any, res:any )=>{
             amount = $10, 
             photo = $11,  
             material = $12
-            WHERE id = $13
+            supplier_name = $13,
+            WHERE id = $14
             RETURNING *
         `,[  
             product_name, 
@@ -51,6 +53,7 @@ const updateSoldProductService = async( req:any, res:any )=>{
             amount, 
             photo,  
             material,
+            supplier_name,
             id 
         ]);
 

@@ -2,12 +2,14 @@ import { express } from './src/allImports';
 import { dotenv } from './src/allImports';
 import { inventoryRoute } from './src/routes/inventory.routes/inventory.routes';
 import { productIncomeRoute } from './src/routes/productIncome.routes/productIncome.routes';
+import { cors } from './src/allImports';
 
 dotenv.config();
 
 const port = process.env.PORT || 3000;
 const app = express();
 
+app.use( cors() )
 app.use( express.json() );
 
 app.use( '/api', inventoryRoute );

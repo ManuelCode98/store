@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import express, { Router } from 'express';
+import cors from 'cors';
 
 
 export {
@@ -8,4 +9,5 @@ export {
     dotenv,
     express,
     Router,
+    cors,
 }
