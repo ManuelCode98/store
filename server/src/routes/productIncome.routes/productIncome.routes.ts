@@ -5,13 +5,13 @@ import { controllers } from "../../controllers/productIncome.controllers/product
 
 const productIncomeRoute = Router();
 
-const { getProducts, getProduct, createProduct, updateProduct, deleteProduct } = controllers
+const { getSoldProducts, getSoldProduct, addSoldProduct, updateSoldProduct, deleteSoldProduct } = controllers
 
-productIncomeRoute.get( '/products-income', getProducts );
-productIncomeRoute.get( '/products-income/:id', getProduct );
-productIncomeRoute.post( '/products-income', createProduct );
-productIncomeRoute.put( '/products-income/:id', updateProduct );
-productIncomeRoute.delete( '/products-income/:id', deleteProduct );
+productIncomeRoute.get( '/products-income', getSoldProducts );
+productIncomeRoute.get( '/products-income/:id', getSoldProduct );
+productIncomeRoute.post( '/products-income/:id', addSoldProduct );
+productIncomeRoute.put( '/products-income/:id', updateSoldProduct );
+productIncomeRoute.delete( '/products-income/:id', deleteSoldProduct );
 
 
 export {

@@ -1,34 +1,35 @@
-import { createProductService } from "../../services/inventory.services/createProduct.service";
-import { deleteProductService } from "../../services/inventory.services/deleteProduct.service";
-import { getProductService } from "../../services/inventory.services/getProduct.service";
-import { getProductsService } from "../../services/inventory.services/getProducts.service";
-import { updateProductService } from "../../services/inventory.services/updateProduct.service";
+import { addSoldProductService } from "../../services/productIncome.services/addSoldProduct.service"
+import { deleteSoldProductService } from "../../services/productIncome.services/deleteSoldProduct.service"
+import { getSoldProductService } from "../../services/productIncome.services/getSoldProduct.service"
+import { getSoldProductsService } from "../../services/productIncome.services/getSoldProducts.service"
+import { updateSoldProductService } from "../../services/productIncome.services/updateSoldProduct.service"
+
 
 
 const controllers = {
-    getProducts: (req:any, res:any)=>{
+    getSoldProducts: (req:any, res:any)=>{
 
-        getProductsService( req, res )
+        getSoldProductsService( req, res )
         
     }, 
 
-    getProduct: (req:any, res:any)=>{
-        getProductService( req, res )            
+    getSoldProduct: (req:any, res:any)=>{
+        getSoldProductService( req, res )            
 
     }, 
 
-    createProduct: (req:any, res:any)=>{
-        createProductService( req, res )            
+    addSoldProduct: (req:any, res:any)=>{
+        addSoldProductService( req, res )            
 
     }, 
 
-    updateProduct: (req:any, res:any)=>{
-    updateProductService( req, res )            
+    updateSoldProduct: (req:any, res:any)=>{
+    updateSoldProductService( req, res )            
 
     }, 
 
-    deleteProduct: (req:any, res:any)=>{
-        deleteProductService( req, res )            
+    deleteSoldProduct: (req:any, res:any)=>{
+        deleteSoldProductService( req, res )            
 
     }
 
