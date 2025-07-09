@@ -1,4 +1,4 @@
-import { compressor, swal } from "../../../../index";
+import { compressor, swal } from "../../../../../index";
 
 
 

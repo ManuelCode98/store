@@ -1,4 +1,4 @@
-import { http } from '../../../index';
+import { http } from '../../../../index';
 import { savePhotoOfTheNewProductService } from './photo/savePhotoOfTheNewProduct.service';
 
 

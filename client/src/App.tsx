@@ -1,4 +1,4 @@
-import CreateProduct from './components/CreateProduct';
+import CreateProduct from './components/CreateProduct/CreateProduct';
 import './App.css'
 
 function App() {

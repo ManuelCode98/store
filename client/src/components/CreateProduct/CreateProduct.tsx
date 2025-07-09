@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import createProductService from './services/createProduct.service';
+import './CreateProduct.css';
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const CreateProduct = () => {
 
 
   return (
-    <form onSubmit={ (e)=> createProductService( e, formData ) } encType="multipart/form-data">
+    <form className='form' onSubmit={ (e)=> createProductService( e, formData ) } encType="multipart/form-data">
       <div>
         <label>
           Nombre de la prenda:
