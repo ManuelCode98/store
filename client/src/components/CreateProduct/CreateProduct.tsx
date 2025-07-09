@@ -34,9 +34,9 @@ const CreateProduct = () => {
 
   return (
     <form className='form' onSubmit={ (e)=> createProductService( e, formData ) } encType="multipart/form-data">
-      <div>
+      <div className='container-label'>
         <label>
-          Nombre de la prenda:
+          Nombre de la prenda:  <br/>
           <input
             type="text"
             name="product_name"
@@ -47,9 +47,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Proveedor de la prenda:
+          Proveedor de la prenda: <br/>
           <input
             type="text"
             name="supplier_name"
@@ -60,9 +60,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Modelo:
+          Modelo: <br/>
           <input
             type="text"
             name="model"
@@ -73,9 +73,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Categoría:
+          Categoría: <br/>
           <select name="category" value={formData.category} onChange={handleChange}>
             <option value="deporte">Deporte</option>
             {/* Puedes agregar más opciones aquí si lo deseas */}
@@ -83,9 +83,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Descripción:
+          Descripción: <br/>
           <textarea
             name="description"
             value={formData.description}
@@ -94,9 +94,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Talla:
+          Talla: <br/>
           <input
             type="text"
             name="size"
@@ -107,9 +107,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
-        <label>
-          Color:
+      <div className='container-label'>
+        <label> 
+          Color: <br/>
           <input
             type="text"
             name="color"
@@ -120,9 +120,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Género:
+          Género: <br/>
           <select name="gender" value={formData.gender} onChange={handleChange}>
             <option value="dama">Dama</option>
             <option value="caballero">Caballero</option>
@@ -130,9 +130,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Precio de compra:
+          Precio de compra: <br/>
           <input
             type="number"
             name="purchase_price"
@@ -145,9 +145,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Precio de venta:
+          Precio de venta: <br/>
           <input
             type="number"
             name="sale_price"
@@ -160,9 +160,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Cantidad:
+          Cantidad: <br/>
           <input
             type="number"
             name="amount"
@@ -174,9 +174,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Foto:
+          Foto: <br/>
           <input
             type="file"
             name="photo"
@@ -186,10 +186,10 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Activo:
-          <input
+          Activo: <br/>
+          <input className='input-checkbox'
             type="checkbox"
             name="asset"
             checked={formData.asset}
@@ -198,9 +198,9 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div>
+      <div className='container-label'>
         <label>
-          Material:
+          Material: <br/>
           <input
             type="text"
             name="material"
@@ -211,7 +211,7 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <button type="submit">Guardar</button>
+      <button className='button-submit' type="submit">Guardar</button>
     </form>
   );
 };

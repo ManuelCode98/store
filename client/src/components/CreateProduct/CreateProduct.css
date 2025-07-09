@@ -1,9 +1,30 @@
+
 .form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 60%;
-    border: 1px solid red;
-    
+    width: 50%;
+    border: 1px solid red; 
+    padding-top: 1rem;
+}
+
+.container-label {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+input, textarea {
+    width: 75%;
+}
+
+.input-checkbox {
+    width: auto;
+}
+
+.button-submit {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
 }

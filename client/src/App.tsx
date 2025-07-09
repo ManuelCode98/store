@@ -1,5 +1,5 @@
 import CreateProduct from './components/CreateProduct/CreateProduct';
-import './App.css'
+import './App.css';
 
 function App() {
 
