@@ -3,7 +3,7 @@ import optimizeImageService from "./optimizeImage.service";
 
 const conexionImgbb = `https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df468c4bcf3cd7`;
 
-const savePhotoOfTheNewProductService = async( productPhotoOtherState:File )=>{ 
+const savePhotoOfTheNewProductService = async( productPhotoOtherState:any )=>{ 
 
     swal.fire( {
         text: 'Subiendo imagen por favor espere...',
@@ -24,11 +24,12 @@ const savePhotoOfTheNewProductService = async( productPhotoOtherState:File )=>{
         const uploadProductPhoto = await http.post( conexionImgbb,formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
-            }})
+            }, timeout: 5000 })
 
         const { success } = uploadProductPhoto.data;
         const { url } = uploadProductPhoto.data.data;
     
+        
         swal.fire({
             text: 'Imagen guardada...',
             icon:'success',

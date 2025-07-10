@@ -8,9 +8,9 @@ const optimizeImageService = async( image:any ) => {
     const imageCompressor = await new Promise( resolv =>{
 
         new compressor( image, {
-            quality: 0.6,
-            maxWidth: 500,
-            maxHeight: 500,
+            quality: 0.7,
+            maxWidth: 800,
+            maxHeight: 800,
             success: ( result:any )=>{
                 resolv( result );
             },

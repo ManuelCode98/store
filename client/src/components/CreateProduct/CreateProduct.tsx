@@ -90,6 +90,7 @@ const CreateProduct = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            // required
           />
         </label>
       </div>
@@ -206,7 +207,7 @@ const CreateProduct = () => {
             name="material"
             value={formData.material}
             onChange={handleChange}
-            required
+            // required
           />
         </label>
       </div>

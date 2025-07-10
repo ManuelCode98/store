@@ -1,7 +1,7 @@
 import { pool } from "../../connectionDb";
 
 const createProductService = async( req:any, res:any )=>{ 
-console.log(req.body);
+
     const {
         product_name, 
         model, 
