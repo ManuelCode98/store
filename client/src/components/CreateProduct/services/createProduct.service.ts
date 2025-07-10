@@ -1,5 +1,5 @@
 import { http } from '../../../../index';
-import { savePhotoOfTheNewProductService } from './photo/savePhotoOfTheNewProduct.service';
+import { savePhotoOfTheNewProductService } from '../../../services/photo/savePhotoOfTheNewProduct.service';
 
 
 const createProductService = async( e:any, formData:any ) => {
@@ -24,11 +24,8 @@ const createProductService = async( e:any, formData:any ) => {
         supplier_name 
     } = formData;
 
-    // const optimizePhoto = await optimizeImageService( formData.photo );
 
     const { success, url }:any = await savePhotoOfTheNewProductService(formData.photo);
-
-    console.log(success, url);
 
     const { data } = await http.post(`${urlConnectionBanckend}api/products-inventory`, {
         product_name, 
@@ -47,7 +44,7 @@ const createProductService = async( e:any, formData:any ) => {
         supplier_name  
     }, { timeout: 5000 })
 
-    console.log( data );
+
 
 }
 

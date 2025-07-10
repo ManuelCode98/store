@@ -1,4 +1,4 @@
-import { http, swal } from "../../../../../index";
+import { http, swal } from "../../../index";
 import optimizeImageService from "./optimizeImage.service";
 
 const conexionImgbb = `https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df468c4bcf3cd7`;
@@ -53,7 +53,10 @@ const savePhotoOfTheNewProductService = async( productPhotoOtherState:any )=>{
             confirmButtonColor:'#01a503'
         })
         console.log('Error al guardar la imagen en ImgBB, ',message);
-
+        return { url:'' }
+    }
+    finally{
+        console.log('Servicio de la carga de imagen finalizado');
     }
     
 };

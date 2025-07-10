@@ -8,7 +8,7 @@ const CreateProduct = () => {
     model:'', 
     category:'Deporte', 
     description:'', 
-    size:'', 
+    size:'Unica', 
     color:'', 
     gender:'Dama',
     purchase_price:'',
@@ -98,13 +98,21 @@ const CreateProduct = () => {
       <div className='container-label'>
         <label>
           Talla: <br/>
-          <input
+          <select name="size" id="">
+            <option>Unica</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+          {/* <input
             type="text"
             name="size"
             value={formData.size}
             onChange={handleChange}
             required
-          />
+          /> */}
         </label>
       </div>
 
