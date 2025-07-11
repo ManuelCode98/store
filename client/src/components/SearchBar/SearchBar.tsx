@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import getProductsService from './services/getProducts.service';
+import './SearchBar.css';
 
 // Definimos el tipo de los datos que vamos a buscar
 interface Item {
@@ -73,7 +74,7 @@ const SearchBar: React.FC = () => {
       {/* <ul> */}
       { terminoBusqueda.length > 0 
         ? 
-        <table border={1}>
+        <table border={1} className='table-container'>
           <thead>
             <tr>
               <th>Foto</th>
