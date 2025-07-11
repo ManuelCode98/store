@@ -24,6 +24,7 @@ const SearchBar: React.FC = () => {
   // Datos de ejemplo
 
   const [ productsNameState, setProductNameState ] = useState([]);
+  const [terminoBusqueda, setTerminoBusqueda] = useState<string>('');
 
   // Todo se debe hacer una peticion para trae todos lo nombre de los productos
   useEffect(() => {
@@ -43,7 +44,7 @@ const SearchBar: React.FC = () => {
   // ];
 
   // Estado para el término de búsqueda
-  const [terminoBusqueda, setTerminoBusqueda] = useState<string>('');
+  
 
   // Función para filtrar los resultados
   const filtrarResultados = ( products: Item[], termino: string): Item[] => {
@@ -60,7 +61,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h2>Barra de Búsqueda</h2>
+      <h2>Que producto quieres actualizar del inventario</h2>
       <input
         type="text"
         placeholder="Buscar..."
@@ -69,15 +70,55 @@ const SearchBar: React.FC = () => {
         style={{ width: '100%', padding: '10px', fontSize: '16px', marginBottom: '20px' }}
       />
 
-      <ul>
-        {resultados.length > 0 ? (
-          resultados.map((item) => (
-            <li key={item.id}>{`${item.product_name} ${ item.model } ${ item.color }`}</li>
-          ))
-        ) : (
-          <li>No se encontraron resultados.</li>
-        )}
-      </ul>
+      {/* <ul> */}
+      { terminoBusqueda.length > 0 
+        ? 
+        <table border={1}>
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Prenda</th>
+              <th>Modelo</th>
+              <th>Color</th>
+              <th>Talla</th>
+              <th>Genero</th>
+              <th>Precio</th>
+              <th>Categoria</th>
+              <th>Materia</th>
+              <th>Activo</th>
+              <th>Unidades</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              {resultados.length > 0 ? (
+                resultados.map((item) => (
+                  <tr>
+                    <td><img src={item.photo} width={50} height={50} /></td>
+                    <td>{item.product_name}</td>
+                    <td>{item.model}</td>
+                    <td>{item.color}</td>
+                    <td>{item.size}</td>
+                    <td>{item.gender}</td>
+                    <td>{item.sale_price}</td>
+                    <td>{item.category}</td>
+                    <td>{item.material}</td>
+                    <td>{item.asset}</td>
+                    <td>{item.amount}</td>
+                  </tr>
+                  // <li key={item.id}>{`${item.product_name} ${ item.model } ${ item.color }`}</li>
+                ))
+              ) : (
+                <span>No se encontraron resultados.</span>
+              )}
+            
+          </tbody>
+        </table>
+      : ''
+      }
+      
+        
+      {/* </ul> */}
     </div>
   );
 };
