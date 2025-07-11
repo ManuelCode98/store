@@ -94,7 +94,7 @@ const SearchBar: React.FC = () => {
             
               {resultados.length > 0 ? (
                 resultados.map((item) => (
-                  <tr>
+                  <tr /*onClick={}*/>
                     <td><img src={item.photo} width={50} height={50} /></td>
                     <td>{item.product_name}</td>
                     <td>{item.model}</td>

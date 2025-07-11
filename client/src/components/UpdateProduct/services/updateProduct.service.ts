@@ -27,7 +27,7 @@ const updateProductService = async( e:any, formData:any ) => {
 
     const { success, url }:any = await savePhotoOfTheNewProductService(formData.photo);
 
-    const { data } = await http.post(`${urlConnectionBanckend}api/products-inventory`, {
+    const { data } = await http.put(`${urlConnectionBanckend}api/products-inventory/`, {
         product_name, 
         model, 
         category, 
