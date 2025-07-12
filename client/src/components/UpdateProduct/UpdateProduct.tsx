@@ -2,30 +2,61 @@ import { useState } from 'react';
 import updateProductService from './services/updateProduct.service';
 import './UpdateProduct.css';
 
-const CreateProduct = () => {
-  const [formData, setFormData] = useState({
+interface ProductData {
+  product_name: string, 
+    model:string, 
+    category:string, 
+    description:string, 
+    size:string, 
+    color:string, 
+    gender:string,
+    purchase_price:string,
+    sale_price:string,
+    amount:string,
+    photo:string,
+    asset:boolean,
+    material:string,
+    supplier_name:string
+}
+
+// photo:string, product_name:string, model:string, color:string, size:string, gender:string, sale_price:string, category:string, material:string, asset:string, amount:string
+const UpdateProduct = ( productDataState:any ) => {
+  
+  const { photo, product_name, model, color, size, gender, sale_price, category, material, asset, amount } = productDataState;
+
+
+  const [formData, setFormData] = useState<any>({
     product_name:'', 
     model:'', 
-    category:'Deporte', 
+    category, 
     description:'', 
-    size:'Unica', 
+    size:'', 
     color:'', 
-    gender:'Dama',
-    purchase_price:'',
+    gender:'',
+    purchase_price:0,
     sale_price:'',
     amount:'',
     photo:'',
-    asset:true,
+    asset: true,
     material:'',
     supplier_name:'',
   });
+// console.log(productDataState);
 
+//Todo arreglar esto 
+  
+  if( Object.keys(productDataState) > 0 ){
+    console.log('hola');
+    
+    setFormData(productDataState )
+  }
+  
   const handleChange = (e:any) => {
     // console.log(e.target.value);
     const { name, value, type, files, checked } = e.target;
     const newValue = type === 'file' ? files[0] : type === 'checkbox' ? checked : value;
 
-    setFormData((prev) => ({
+    setFormData((prev:any) => ({
       ...prev,
       [name]: newValue
     }));
@@ -201,7 +232,7 @@ const CreateProduct = () => {
           <input className='input-checkbox'
             type="checkbox"
             name="asset"
-            checked={formData.asset}
+            checked={ formData.asset }
             onChange={handleChange}
           />
         </label>
@@ -225,4 +256,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

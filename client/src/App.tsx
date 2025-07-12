@@ -9,13 +9,13 @@ function App() {
     <>
       <div>
         <h2 className='subtitle' >Añadir un nuevo producto al inventario</h2>
-        <CreateProduct/>
+        {/* <CreateProduct/> */}
       </div>
 
       <div>
         <h2 className='subtitle' >Actualizar un nuevo producto al inventario</h2>
         <SearchBar/>
-        <UpdateProduct/>
+        {/* <UpdateProduct/> */}
       </div>
     </>
   )

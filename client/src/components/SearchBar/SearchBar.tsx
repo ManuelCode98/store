@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import getProductsService from './services/getProducts.service';
 import './SearchBar.css';
+import UpdateProduct from '../UpdateProduct/UpdateProduct';
 
 // Definimos el tipo de los datos que vamos a buscar
 interface Item {
@@ -26,11 +27,13 @@ const SearchBar: React.FC = () => {
 
   const [ productsNameState, setProductNameState ] = useState([]);
   const [terminoBusqueda, setTerminoBusqueda] = useState<string>('');
+  const [ productDataState, setProductDataState ] = useState<any>({})
+  const [ productActiveState, setProductActiveState ] = useState(true)
 
   // Todo se debe hacer una peticion para trae todos lo nombre de los productos
   useEffect(() => {
     const products = async()=> setProductNameState( await getProductsService() )
-
+    
     products();
   }, []);
 
@@ -47,6 +50,54 @@ const SearchBar: React.FC = () => {
   // Estado para el término de búsqueda
   
 
+  // Funcion para llenar el formulario con el elemento que se clico
+  const setAllData = ( { currentTarget }:any )=>{
+
+    const selectAllTd = currentTarget.querySelectorAll('td');
+    
+    const photo = selectAllTd[0].querySelector('img').src;
+    const product_name = selectAllTd[1].innerText; 
+    const model = selectAllTd[2].innerText;
+    const color = selectAllTd[3].innerText;
+    const size = selectAllTd[4].innerText;
+    const gender = selectAllTd[5].innerText;
+    const sale_price = selectAllTd[6].innerText;
+    const category = selectAllTd[7].innerText;
+    const material = selectAllTd[8].innerText;
+    const asset = selectAllTd[9].innerText;
+    const amount = selectAllTd[10].innerText;
+    
+    if( asset === 'Active' ){
+
+      setProductActiveState( true )
+
+    } else {
+      setProductActiveState( false )
+    }
+
+
+
+    setProductDataState({photo, product_name, model, color, size, gender, sale_price, category, material, asset: productActiveState, amount})
+    // const productData = {
+
+    // }
+
+    // <th>Foto</th>
+    // <th>Prenda</th>
+    // <th>Modelo</th>
+    // <th>Color</th>
+    // <th>Talla</th>
+    // <th>Genero</th>
+    // <th>Precio</th>
+    // <th>Categoria</th>
+    // <th>Materia</th>
+    // <th>Activo</th>
+    // <th>Unidades</th>
+    
+
+  }
+  
+
   // Función para filtrar los resultados
   const filtrarResultados = ( products: Item[], termino: string): Item[] => {
     if (!termino.trim()) return products;
@@ -61,7 +112,7 @@ const SearchBar: React.FC = () => {
   const resultados = filtrarResultados( productsNameState, terminoBusqueda);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+    <div style={{ padding: '20', fontFamily: 'Arial' }}>
       <h2>Que producto quieres actualizar del inventario</h2>
       <input
         type="text"
@@ -85,7 +136,7 @@ const SearchBar: React.FC = () => {
               <th>Genero</th>
               <th>Precio</th>
               <th>Categoria</th>
-              <th>Materia</th>
+              <th>Material</th>
               <th>Activo</th>
               <th>Unidades</th>
             </tr>
@@ -94,7 +145,7 @@ const SearchBar: React.FC = () => {
             
               {resultados.length > 0 ? (
                 resultados.map((item) => (
-                  <tr /*onClick={}*/>
+                  <tr onClick={ (e)=> setAllData( e ) }>
                     <td><img src={item.photo} width={50} height={50} /></td>
                     <td>{item.product_name}</td>
                     <td>{item.model}</td>
@@ -118,6 +169,7 @@ const SearchBar: React.FC = () => {
       : ''
       }
       
+      <UpdateProduct {...productDataState} />
         
       {/* </ul> */}
     </div>
