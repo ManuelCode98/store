@@ -25,15 +25,14 @@ interface Item {
 const SearchBar: React.FC = () => {
   // Datos de ejemplo
 
-  const [ productsNameState, setProductNameState ] = useState([]);
+  const [ allProductsState, setAllProductsState ] = useState([]);
   const [terminoBusqueda, setTerminoBusqueda] = useState<string>('');
   const [ productDataState, setProductDataState ] = useState<any>({})
   const [ productActiveState, setProductActiveState ] = useState(true)
 
-  // Todo se debe hacer una peticion para trae todos lo nombre de los productos
   useEffect(() => {
-    const products = async()=> setProductNameState( await getProductsService() )
-    
+    const products = async()=> setAllProductsState( await getProductsService() )
+
     products();
   }, []);
 
@@ -51,7 +50,7 @@ const SearchBar: React.FC = () => {
   
 
   // Funcion para llenar el formulario con el elemento que se clico
-  const setAllData = ( { currentTarget }:any )=>{
+  const setAllData = ( { currentTarget }:any, asset:boolean )=>{
 
     const selectAllTd = currentTarget.querySelectorAll('td');
     
@@ -62,22 +61,13 @@ const SearchBar: React.FC = () => {
     const size = selectAllTd[4].innerText;
     const gender = selectAllTd[5].innerText;
     const sale_price = selectAllTd[6].innerText;
-    const category = selectAllTd[7].innerText;
-    const material = selectAllTd[8].innerText;
-    const asset = selectAllTd[9].innerText;
-    const amount = selectAllTd[10].innerText;
-    
-    if( asset === 'Active' ){
+    const purchase_price = selectAllTd[7].innerText;
+    const category = selectAllTd[8].innerText;
+    const material = selectAllTd[9].innerText;
+    const amount = selectAllTd[11].innerText;
+    const supplier_name = selectAllTd[12].innerText;
 
-      setProductActiveState( true )
-
-    } else {
-      setProductActiveState( false )
-    }
-
-
-
-    setProductDataState({photo, product_name, model, color, size, gender, sale_price, category, material, asset: productActiveState, amount})
+    setProductDataState({photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name})
     // const productData = {
 
     // }
@@ -109,7 +99,7 @@ const SearchBar: React.FC = () => {
     );
   };
 
-  const resultados = filtrarResultados( productsNameState, terminoBusqueda);
+  const resultados = filtrarResultados( allProductsState, terminoBusqueda);
 
   return (
     <div style={{ padding: '20', fontFamily: 'Arial' }}>
@@ -134,7 +124,8 @@ const SearchBar: React.FC = () => {
               <th>Color</th>
               <th>Talla</th>
               <th>Genero</th>
-              <th>Precio</th>
+              <th>Precio de venta</th>
+              <th>Precio de compra</th>
               <th>Categoria</th>
               <th>Material</th>
               <th>Activo</th>
@@ -145,7 +136,7 @@ const SearchBar: React.FC = () => {
             
               {resultados.length > 0 ? (
                 resultados.map((item) => (
-                  <tr onClick={ (e)=> setAllData( e ) }>
+                  <tr key={ item.id } onClick={ (e)=> setAllData( e, item.asset ) }>
                     <td><img src={item.photo} width={50} height={50} /></td>
                     <td>{item.product_name}</td>
                     <td>{item.model}</td>
@@ -153,10 +144,12 @@ const SearchBar: React.FC = () => {
                     <td>{item.size}</td>
                     <td>{item.gender}</td>
                     <td>{item.sale_price}</td>
+                    <td>{item.purchase_price}</td>
                     <td>{item.category}</td>
                     <td>{item.material}</td>
-                    <td>{item.asset}</td>
+                    <td>{item.asset === true ? 'Activo' : 'Agotado' }</td>
                     <td>{item.amount}</td>
+                    <td>{item.supplier_name}</td>
                   </tr>
                   // <li key={item.id}>{`${item.product_name} ${ item.model } ${ item.color }`}</li>
                 ))

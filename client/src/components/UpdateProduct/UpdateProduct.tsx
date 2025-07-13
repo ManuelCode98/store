@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import updateProductService from './services/updateProduct.service';
 import './UpdateProduct.css';
 
@@ -10,8 +10,8 @@ interface ProductData {
     size:string, 
     color:string, 
     gender:string,
-    purchase_price:string,
-    sale_price:string,
+    purchase_price:number,
+    sale_price:number,
     amount:string,
     photo:string,
     asset:boolean,
@@ -21,12 +21,11 @@ interface ProductData {
 
 // photo:string, product_name:string, model:string, color:string, size:string, gender:string, sale_price:string, category:string, material:string, asset:string, amount:string
 const UpdateProduct = ( productDataState:any ) => {
-  
-  const { photo, product_name, model, color, size, gender, sale_price, category, material, asset, amount } = productDataState;
 
+  const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
 
   const [formData, setFormData] = useState<any>({
-    product_name:'', 
+    product_name: '', 
     model:'', 
     category, 
     description:'', 
@@ -34,23 +33,22 @@ const UpdateProduct = ( productDataState:any ) => {
     color:'', 
     gender:'',
     purchase_price:0,
-    sale_price:'',
+    sale_price:0,
     amount:'',
     photo:'',
     asset: true,
     material:'',
     supplier_name:'',
   });
-// console.log(productDataState);
-
-//Todo arreglar esto 
-  
-  if( Object.keys(productDataState) > 0 ){
-    console.log('hola');
     
-    setFormData(productDataState )
-  }
   
+  if( JSON.stringify(productDataState) !== '{}' && JSON.stringify( productDataState ) !== JSON.stringify( formData ) ){
+
+    setFormData( productDataState )
+
+  }
+
+ 
   const handleChange = (e:any) => {
     // console.log(e.target.value);
     const { name, value, type, files, checked } = e.target;
