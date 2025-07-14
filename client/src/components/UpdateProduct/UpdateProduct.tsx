@@ -22,16 +22,16 @@ interface ProductData {
 // photo:string, product_name:string, model:string, color:string, size:string, gender:string, sale_price:string, category:string, material:string, asset:string, amount:string
 const UpdateProduct = ( productDataState:any ) => {
 
-  const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
+  // const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
 
   const [formData, setFormData] = useState<any>({
     product_name: '', 
     model:'', 
-    category, 
+    category:'Deporte', 
     description:'', 
-    size:'', 
+    size:'Unica', 
     color:'', 
-    gender:'',
+    gender:'Dama',
     purchase_price:0,
     sale_price:0,
     amount:'',
@@ -60,12 +60,13 @@ const UpdateProduct = ( productDataState:any ) => {
     }));
   };
 
+  // Todo Arregla esta parte cuando selecionamos un producto que se pueda seguir escribiendo en lo campos de actualizar
 
   return (
     <form className='form' onSubmit={ (e)=> updateProductService( e, formData ) } encType="multipart/form-data">
       <div className='container-label'>
         <label>
-          Nombre de la prenda:  <br/>
+          Nombre del producto:  <br/>
           <input
             type="text"
             name="product_name"
@@ -78,7 +79,7 @@ const UpdateProduct = ( productDataState:any ) => {
 
       <div className='container-label'>
         <label>
-          Proveedor de la prenda: <br/>
+          Proveedor del producto: <br/>
           <input
             type="text"
             name="supplier_name"
@@ -106,7 +107,9 @@ const UpdateProduct = ( productDataState:any ) => {
         <label>
           Categoría: <br/>
           <select name="category" value={formData.category} onChange={handleChange}>
-            <option value="deporte">Deporte</option>
+            <option value="Deporte">Deporte</option>
+            <option value="Herramienta">Herramienta</option>
+            <option value="Accesorio">Herramienta</option>
             {/* Puedes agregar más opciones aquí si lo deseas */}
           </select>
         </label>
@@ -124,26 +127,30 @@ const UpdateProduct = ( productDataState:any ) => {
         </label>
       </div>
 
-      <div className='container-label'>
-        <label>
-          Talla: <br/>
-          <select name="size" id="">
-            <option>Unica</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-          </select>
-          {/* <input
-            type="text"
-            name="size"
-            value={formData.size}
-            onChange={handleChange}
-            required
-          /> */}
-        </label>
-      </div>
+      { formData.category === 'Deporte' 
+        ? <div className='container-label'>
+            <label>
+              Talla: <br/>
+              <select name="size" id="">
+                <option>Unica</option>
+                <option>XS</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+              </select>
+              {/* <input
+                type="text"
+                name="size"
+                value={formData.size}
+                onChange={handleChange}
+                required
+              /> */}
+            </label>
+          </div>
+        : ''
+      }
+      
 
       <div className='container-label'>
         <label> 

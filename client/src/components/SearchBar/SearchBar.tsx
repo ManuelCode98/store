@@ -63,11 +63,15 @@ const SearchBar: React.FC = () => {
     const sale_price = selectAllTd[6].innerText;
     const purchase_price = selectAllTd[7].innerText;
     const category = selectAllTd[8].innerText;
-    const material = selectAllTd[9].innerText;
+    const description = selectAllTd[9].innerText;
+    const material = selectAllTd[10].innerText;
     const amount = selectAllTd[11].innerText;
     const supplier_name = selectAllTd[12].innerText;
 
-    setProductDataState({photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name})
+    console.log(selectAllTd);
+    
+
+    setProductDataState({photo, product_name, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name})
     // const productData = {
 
     // }
@@ -127,6 +131,7 @@ const SearchBar: React.FC = () => {
               <th>Precio de venta</th>
               <th>Precio de compra</th>
               <th>Categoria</th>
+              <th>Descripción</th>
               <th>Material</th>
               <th>Activo</th>
               <th>Unidades</th>
@@ -146,6 +151,7 @@ const SearchBar: React.FC = () => {
                     <td>{item.sale_price}</td>
                     <td>{item.purchase_price}</td>
                     <td>{item.category}</td>
+                    <td>{item.description}</td>
                     <td>{item.material}</td>
                     <td>{item.asset === true ? 'Activo' : 'Agotado' }</td>
                     <td>{item.amount}</td>

@@ -36,7 +36,7 @@ const CreateProduct = () => {
     <form className='form' onSubmit={ (e)=> createProductService( e, formData ) } encType="multipart/form-data">
       <div className='container-label'>
         <label>
-          Nombre de la prenda:  <br/>
+          Nombre de la producto:  <br/>
           <input
             type="text"
             name="product_name"
@@ -49,7 +49,7 @@ const CreateProduct = () => {
 
       <div className='container-label'>
         <label>
-          Proveedor de la prenda: <br/>
+          Proveedor del producto: <br/>
           <input
             type="text"
             name="supplier_name"
@@ -78,6 +78,8 @@ const CreateProduct = () => {
           Categoría: <br/>
           <select name="category" value={formData.category} onChange={handleChange}>
             <option value="deporte">Deporte</option>
+            <option value="Herramienta">Herramienta</option>
+            <option value="Accesorio">Herramienta</option>
             {/* Puedes agregar más opciones aquí si lo deseas */}
           </select>
         </label>
@@ -95,26 +97,29 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div className='container-label'>
-        <label>
-          Talla: <br/>
-          <select name="size" id="">
-            <option>Unica</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-          </select>
-          {/* <input
-            type="text"
-            name="size"
-            value={formData.size}
-            onChange={handleChange}
-            required
-          /> */}
-        </label>
-      </div>
+      { formData.category === 'Deporte' 
+        ? <div className='container-label'>
+            <label>
+              Talla: <br/>
+              <select name="size" id="">
+                <option>Unica</option>
+                <option>XS</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+              </select>
+              {/* <input
+                type="text"
+                name="size"
+                value={formData.size}
+                onChange={handleChange}
+                required
+              /> */}
+            </label>
+          </div>
+        : ''
+      }
 
       <div className='container-label'>
         <label> 
