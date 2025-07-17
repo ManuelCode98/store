@@ -9,6 +9,7 @@ const updateProductService = async( e:any, formData:any ) => {
     const urlConnectionBanckend:string = import.meta.env.VITE_CONNECTION_DB;
 
     const { 
+        id,
         product_name, 
         model, 
         category, 
@@ -27,7 +28,7 @@ const updateProductService = async( e:any, formData:any ) => {
 
     const { success, url }:any = await savePhotoOfTheNewProductService(formData.photo);
 
-    const { data } = await http.put(`${urlConnectionBanckend}api/products-inventory/`, {
+    const { data } = await http.put(`${urlConnectionBanckend}api/products-inventory/${id}`, {
         product_name, 
         model, 
         category, 

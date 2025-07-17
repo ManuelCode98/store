@@ -23,8 +23,9 @@ interface ProductData {
 const UpdateProduct = ( productDataState:any ) => {
 
   // const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
-
+// Todo tengo que pasar el id para poder actualizar el producto
   const [formData, setFormData] = useState<any>({
+    id,
     product_name: '', 
     model:'', 
     category:'Deporte', 
@@ -41,13 +42,9 @@ const UpdateProduct = ( productDataState:any ) => {
     supplier_name:'',
   });
     
-  
-  if( JSON.stringify(productDataState) !== '{}' && JSON.stringify( productDataState ) !== JSON.stringify( formData ) ){
-
+  useEffect(()=>{
     setFormData( productDataState )
-
-  }
-
+  }, [productDataState])
  
   const handleChange = (e:any) => {
     // console.log(e.target.value);

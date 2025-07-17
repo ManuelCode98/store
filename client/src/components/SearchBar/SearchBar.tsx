@@ -35,7 +35,8 @@ const SearchBar: React.FC = () => {
 
     products();
   }, []);
-
+  console.log(allProductsState);
+  
   // console.log(productsNameState);
 
   // const datos: Item[] = [
@@ -50,7 +51,8 @@ const SearchBar: React.FC = () => {
   
 
   // Funcion para llenar el formulario con el elemento que se clico
-  const setAllData = ( { currentTarget }:any, asset:boolean )=>{
+  const setAllData = ( { currentTarget }:any, asset:boolean, id:number )=>{
+console.log(currentTarget);
 
     const selectAllTd = currentTarget.querySelectorAll('td');
     
@@ -65,13 +67,13 @@ const SearchBar: React.FC = () => {
     const category = selectAllTd[8].innerText;
     const description = selectAllTd[9].innerText;
     const material = selectAllTd[10].innerText;
-    const amount = selectAllTd[11].innerText;
-    const supplier_name = selectAllTd[12].innerText;
+    const supplier_name = selectAllTd[11].innerText;
+    const amount = selectAllTd[12].innerText;
 
-    console.log(selectAllTd);
+    console.log(selectAllTd[11]);
     
 
-    setProductDataState({photo, product_name, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name})
+    setProductDataState({id, photo, product_name, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name})
     // const productData = {
 
     // }
@@ -105,6 +107,11 @@ const SearchBar: React.FC = () => {
 
   const resultados = filtrarResultados( allProductsState, terminoBusqueda);
 
+  const resetSearch = ()=>{
+    setTerminoBusqueda('')
+  }
+console.log(resultados);
+
   return (
     <div style={{ padding: '20', fontFamily: 'Arial' }}>
       <h2>Que producto quieres actualizar del inventario</h2>
@@ -128,31 +135,33 @@ const SearchBar: React.FC = () => {
               <th>Color</th>
               <th>Talla</th>
               <th>Genero</th>
-              <th>Precio de venta</th>
               <th>Precio de compra</th>
+              <th>Precio de venta</th>
               <th>Categoria</th>
               <th>Descripción</th>
               <th>Material</th>
               <th>Activo</th>
               <th>Unidades</th>
+              <th>Proveedor</th>
             </tr>
           </thead>
           <tbody>
             
               {resultados.length > 0 ? (
                 resultados.map((item) => (
-                  <tr key={ item.id } onClick={ (e)=> setAllData( e, item.asset ) }>
-                    <td><img src={item.photo} width={50} height={50} /></td>
+                  <tr key={ item.id } onClick={ (e)=> {setAllData( e, item.asset, item.id ), resetSearch()} }>
+                    <td><img src={item.photo} width={'50'} height={'50'} /></td>
                     <td>{item.product_name}</td>
                     <td>{item.model}</td>
                     <td>{item.color}</td>
                     <td>{item.size}</td>
                     <td>{item.gender}</td>
-                    <td>{item.sale_price}</td>
                     <td>{item.purchase_price}</td>
+                    <td>{item.sale_price}</td>
                     <td>{item.category}</td>
                     <td>{item.description}</td>
                     <td>{item.material}</td>
+                    {/* <td>{item.asset ? 'Activo' : 'Agotado' }</td> */}
                     <td>{item.asset === true ? 'Activo' : 'Agotado' }</td>
                     <td>{item.amount}</td>
                     <td>{item.supplier_name}</td>
