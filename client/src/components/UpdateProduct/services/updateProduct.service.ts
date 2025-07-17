@@ -25,6 +25,7 @@ const updateProductService = async( e:any, formData:any ) => {
         supplier_name 
     } = formData;
 
+    
 
     const { success, url }:any = await savePhotoOfTheNewProductService(formData.photo);
 

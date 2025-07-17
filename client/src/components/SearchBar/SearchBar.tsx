@@ -130,7 +130,7 @@ console.log(resultados);
           <thead>
             <tr>
               <th>Foto</th>
-              <th>Prenda</th>
+              <th>Producto</th>
               <th>Modelo</th>
               <th>Color</th>
               <th>Talla</th>

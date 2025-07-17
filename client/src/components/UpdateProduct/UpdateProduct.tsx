@@ -25,7 +25,7 @@ const UpdateProduct = ( productDataState:any ) => {
   // const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
 // Todo tengo que pasar el id para poder actualizar el producto
   const [formData, setFormData] = useState<any>({
-    id,
+    id: 0,
     product_name: '', 
     model:'', 
     category:'Deporte', 
@@ -123,7 +123,7 @@ const UpdateProduct = ( productDataState:any ) => {
           />
         </label>
       </div>
-
+//Todo Arreglar que modifique la talla
       { formData.category === 'Deporte' 
         ? <div className='container-label'>
             <label>

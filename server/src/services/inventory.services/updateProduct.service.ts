@@ -38,7 +38,7 @@ const updateProductService = async( req:any, res:any )=>{
             amount = $10, 
             photo = $11, 
             asset = $12, 
-            material = $13
+            material = $13,
             supplier_name = $14
             WHERE id = $15
             RETURNING *
