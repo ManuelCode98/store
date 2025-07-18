@@ -48,7 +48,7 @@ const createProductService = async( e:any, formData:any ) => {
         supplier_name  
     }, { timeout: 5000 })
 
-
+    
 
 }
 

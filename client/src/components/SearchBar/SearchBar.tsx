@@ -35,20 +35,6 @@ const SearchBar: React.FC = () => {
 
     products();
   }, []);
-  console.log(allProductsState);
-  
-  // console.log(productsNameState);
-
-  // const datos: Item[] = [
-  //   { id: 1, nombre: 'Top Picapiedra' },
-  //   { id: 2, nombre: 'Scooby Doo' },
-  //   { id: 3, nombre: 'Top Gear' },
-  //   { id: 4, nombre: 'Looney Tunes' },
-  //   { id: 5, nombre: 'Picapiedra' },
-  // ];
-
-  // Estado para el término de búsqueda
-  
 
   // Funcion para llenar el formulario con el elemento que se clico
   const setAllData = ( { currentTarget }:any, asset:boolean, id:number )=>{

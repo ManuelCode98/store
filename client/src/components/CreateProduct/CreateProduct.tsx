@@ -77,9 +77,17 @@ const CreateProduct = () => {
         <label>
           Categoría: <br/>
           <select name="category" value={formData.category} onChange={handleChange}>
-            <option value="deporte">Deporte</option>
+            <option value="Deporte">Deporte</option>
             <option value="Herramienta">Herramienta</option>
-            <option value="Accesorio">Herramienta</option>
+            <option value="Accesorio">Accesorio</option>
+            <option value="Abarrotes">Abarrotes</option>
+            <option value="Papeleria">Papelería</option>
+            <option value="Articulos de limpieza">Artículos de limpieza</option>
+            <option value="CuidadoPersonal">Cuidado personal</option>
+            <option value="ArtículosHogar">Artículos para el hogar</option>
+            <option value="Juguetes">Juguetes</option>
+            <option value="Tecnologia">Tecnología</option>
+            , p, , p y algunos , e incluso  y tecnología
             {/* Puedes agregar más opciones aquí si lo deseas */}
           </select>
         </label>
@@ -134,15 +142,19 @@ const CreateProduct = () => {
         </label>
       </div>
 
-      <div className='container-label'>
-        <label>
-          Género: <br/>
-          <select name="gender" value={formData.gender} onChange={handleChange}>
-            <option value="dama">Dama</option>
-            <option value="caballero">Caballero</option>
-          </select>
-        </label>
-      </div>
+      { formData.category === 'Deporte'
+        ?
+          <div className='container-label'>
+            <label>
+              Género: <br/>
+              <select name="gender" value={formData.gender} onChange={handleChange}>
+                <option value="dama">Dama</option>
+                <option value="caballero">Caballero</option>
+              </select>
+            </label>
+          </div>
+        :
+      ''}
 
       <div className='container-label'>
         <label>
