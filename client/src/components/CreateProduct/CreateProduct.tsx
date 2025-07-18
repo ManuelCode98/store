@@ -101,13 +101,13 @@ const CreateProduct = () => {
         ? <div className='container-label'>
             <label>
               Talla: <br/>
-              <select name="size" id="">
-                <option>Unica</option>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
+              <select name="size" value={ formData.size } onChange={handleChange}>
+                <option value='Unica'>Unica</option>
+                <option value='XS'>XS</option>
+                <option value='S'>S</option>
+                <option value='S'>M</option>
+                <option value='L'>L</option>
+                <option value='XL'>XL</option>
               </select>
               {/* <input
                 type="text"

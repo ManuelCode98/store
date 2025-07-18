@@ -6,6 +6,8 @@ const createProductService = async( e:any, formData:any ) => {
 
     e.preventDefault();
 
+    let urlPhoto:string = '';
+
     const urlConnectionBanckend:string = import.meta.env.VITE_CONNECTION_DB;
 
     const { 
@@ -25,7 +27,7 @@ const createProductService = async( e:any, formData:any ) => {
     } = formData;
 
 
-    const { success, url }:any = await savePhotoOfTheNewProductService(formData.photo);
+    const { url }:any = await savePhotoOfTheNewProductService(formData.photo);
 
     const { data } = await http.post(`${urlConnectionBanckend}api/products-inventory`, {
         product_name, 
@@ -38,7 +40,7 @@ const createProductService = async( e:any, formData:any ) => {
         purchase_price,
         sale_price,
         amount,
-        photo: url,
+        photo: urlPhoto,
         asset,
         material,
         supplier_name  

@@ -23,7 +23,6 @@ interface ProductData {
 const UpdateProduct = ( productDataState:any ) => {
 
   // const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
-// Todo tengo que pasar el id para poder actualizar el producto
   const [formData, setFormData] = useState<any>({
     id: 0,
     product_name: '', 
@@ -47,7 +46,7 @@ const UpdateProduct = ( productDataState:any ) => {
   }, [productDataState])
  
   const handleChange = (e:any) => {
-    // console.log(e.target.value);
+   
     const { name, value, type, files, checked } = e.target;
     const newValue = type === 'file' ? files[0] : type === 'checkbox' ? checked : value;
 
@@ -56,8 +55,6 @@ const UpdateProduct = ( productDataState:any ) => {
       [name]: newValue
     }));
   };
-
-  // Todo Arregla esta parte cuando selecionamos un producto que se pueda seguir escribiendo en lo campos de actualizar
 
   return (
     <form className='form' onSubmit={ (e)=> updateProductService( e, formData ) } encType="multipart/form-data">
@@ -123,18 +120,18 @@ const UpdateProduct = ( productDataState:any ) => {
           />
         </label>
       </div>
-//Todo Arreglar que modifique la talla
+
       { formData.category === 'Deporte' 
         ? <div className='container-label'>
             <label>
               Talla: <br/>
-              <select name="size" id="">
-                <option>Unica</option>
-                <option>XS</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
+              <select name="size" value={ formData.size } onChange={handleChange}>
+                <option value='Unica'>Unica</option>
+                <option value='XS'>XS</option>
+                <option value='S'>S</option>
+                <option value='S'>M</option>
+                <option value='L'>L</option>
+                <option value='XL'>XL</option>
               </select>
               {/* <input
                 type="text"

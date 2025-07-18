@@ -3,7 +3,14 @@ import optimizeImageService from "./optimizeImage.service";
 
 const conexionImgbb = `https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df468c4bcf3cd7`;
 
-const savePhotoOfTheNewProductService = async( productPhotoOtherState:any )=>{ 
+const savePhotoOfTheNewProductService = async( productPhotoOtherState:File )=>{ 
+    
+    // Todo arreglar la condicion que entre cuando el productPhotoOtherState no sea un objeto
+    console.log(productPhotoOtherState);
+    
+    if( !productPhotoOtherState ){
+        return { url:'', success: false }
+    }
 
     swal.fire( {
         text: 'Subiendo imagen por favor espere...',
