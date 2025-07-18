@@ -6,9 +6,8 @@ const createProductService = async( e:any, formData:any ) => {
 
     e.preventDefault();
 
-    let urlPhoto:string = '';
-
     const urlConnectionBanckend:string = import.meta.env.VITE_CONNECTION_DB;
+    let assetValue:boolean = true;
 
     const { 
         product_name, 
@@ -26,6 +25,9 @@ const createProductService = async( e:any, formData:any ) => {
         supplier_name 
     } = formData;
 
+    if( amount <= 0 ){
+        assetValue = false
+    }
 
     const { url }:any = await savePhotoOfTheNewProductService(formData.photo);
 
@@ -40,8 +42,8 @@ const createProductService = async( e:any, formData:any ) => {
         purchase_price,
         sale_price,
         amount,
-        photo: urlPhoto,
-        asset,
+        photo: url,
+        asset: assetValue,
         material,
         supplier_name  
     }, { timeout: 5000 })

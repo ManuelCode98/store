@@ -13,7 +13,7 @@ const CreateProduct = () => {
     gender:'Dama',
     purchase_price:'',
     sale_price:'',
-    amount:'',
+    amount:0,
     photo:'',
     asset:true,
     material:'',
