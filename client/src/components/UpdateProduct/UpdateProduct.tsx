@@ -29,9 +29,9 @@ const UpdateProduct = ( productDataState:any ) => {
     model:'', 
     category:'Deporte', 
     description:'', 
-    size:'Unica', 
+    size:'', 
     color:'', 
-    gender:'Dama',
+    gender:'',
     purchase_price:0,
     sale_price:0,
     amount:'',
@@ -103,7 +103,14 @@ const UpdateProduct = ( productDataState:any ) => {
           <select name="category" value={formData.category} onChange={handleChange}>
             <option value="Deporte">Deporte</option>
             <option value="Herramienta">Herramienta</option>
-            <option value="Accesorio">Herramienta</option>
+            <option value="Accesorio">Accesorio</option>
+            <option value="Abarrotes">Abarrotes</option>
+            <option value="Papeleria">Papelería</option>
+            <option value="Articulos de limpieza">Artículos de limpieza</option>
+            <option value="ArtículosHogar">Artículos para el hogar</option>
+            <option value="CuidadoPersonal">Cuidado personal</option>
+            <option value="Juguetes">Juguetes</option>
+            <option value="Tecnologia">Tecnología</option>
             {/* Puedes agregar más opciones aquí si lo deseas */}
           </select>
         </label>
@@ -126,6 +133,7 @@ const UpdateProduct = ( productDataState:any ) => {
             <label>
               Talla: <br/>
               <select name="size" value={ formData.size } onChange={handleChange}>
+                <option value=''></option>
                 <option value='Unica'>Unica</option>
                 <option value='XS'>XS</option>
                 <option value='S'>S</option>
@@ -163,6 +171,7 @@ const UpdateProduct = ( productDataState:any ) => {
         <label>
           Género: <br/>
           <select name="gender" value={formData.gender} onChange={handleChange}>
+            <option value=''></option>
             <option value="dama">Dama</option>
             <option value="caballero">Caballero</option>
           </select>

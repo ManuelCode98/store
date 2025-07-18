@@ -3,14 +3,15 @@ import createProductService from './services/createProduct.service';
 import './CreateProduct.css';
 
 const CreateProduct = () => {
+ 
   const [formData, setFormData] = useState({
     product_name:'', 
     model:'', 
     category:'Deporte', 
     description:'', 
-    size:'Unica', 
+    size:'', 
     color:'', 
-    gender:'Dama',
+    gender:'',
     purchase_price:'',
     sale_price:'',
     amount:0,
@@ -21,7 +22,7 @@ const CreateProduct = () => {
   });
 
   const handleChange = (e:any) => {
-    // console.log(e.target.value);
+  
     const { name, value, type, files, checked } = e.target;
     const newValue = type === 'file' ? files[0] : type === 'checkbox' ? checked : value;
 
@@ -30,7 +31,6 @@ const CreateProduct = () => {
       [name]: newValue
     }));
   };
-
 
   return (
     <form className='form' onSubmit={ (e)=> createProductService( e, formData ) } encType="multipart/form-data">
@@ -83,11 +83,10 @@ const CreateProduct = () => {
             <option value="Abarrotes">Abarrotes</option>
             <option value="Papeleria">Papelería</option>
             <option value="Articulos de limpieza">Artículos de limpieza</option>
-            <option value="CuidadoPersonal">Cuidado personal</option>
             <option value="ArtículosHogar">Artículos para el hogar</option>
+            <option value="CuidadoPersonal">Cuidado personal</option>
             <option value="Juguetes">Juguetes</option>
             <option value="Tecnologia">Tecnología</option>
-            , p, , p y algunos , e incluso  y tecnología
             {/* Puedes agregar más opciones aquí si lo deseas */}
           </select>
         </label>
@@ -110,6 +109,7 @@ const CreateProduct = () => {
             <label>
               Talla: <br/>
               <select name="size" value={ formData.size } onChange={handleChange}>
+                <option value=''></option>
                 <option value='Unica'>Unica</option>
                 <option value='XS'>XS</option>
                 <option value='S'>S</option>
@@ -139,6 +139,20 @@ const CreateProduct = () => {
             onChange={handleChange}
             required
           />
+          {/*Todo Esta parte esta pendiente quiero hacer que uno seleccione los colores y se vallan agregando */}
+          {/* <select onChange={handleChange} name='color'>
+            <option></option>
+            <option value="#FF0000" style={{background: '#FF0000', color: 'white'}}>Rojo (#FF0000)</option>
+            <option value="#00FF00" style={{background: '#00FF00', color: 'black'}}>Verde (#00FF00)</option>
+            <option value="#0000FF" style={{background: '#0000FF', color: 'white'}}>Azul (#0000FF)</option>
+            <option value="#FFFF00" style={{background: '#FFFF00', color: 'black'}}>Amarillo (#FFFF00)</option>
+            <option value="#FFA500" style={{background: '#FFA500', color: 'black'}}>Naranja (#FFA500)</option>
+            <option value="#800080" style={{background: '#800080', color: 'white'}}>Morado (#800080)</option>
+            <option value="#FFC0CB" style={{background: '#FFC0CB', color: 'black'}}>Rosado (#FFC0CB)</option>
+            <option value="#00FFFF" style={{background: '#00FFFF', color: 'black'}}>Cyan (#00FFFF)</option>
+            <option value="#A52A2A" style={{background: '#A52A2A', color: 'white'}}>Marrón (#A52A2A)</option>
+            <option value="#808080" style={{background: '#808080', color: 'white'}}>Gris (#808080)</option>
+          </select> */}
         </label>
       </div>
 
@@ -148,13 +162,14 @@ const CreateProduct = () => {
             <label>
               Género: <br/>
               <select name="gender" value={formData.gender} onChange={handleChange}>
+                <option value=''></option>
                 <option value="dama">Dama</option>
                 <option value="caballero">Caballero</option>
               </select>
             </label>
           </div>
-        :
-      ''}
+        : ''
+      }
 
       <div className='container-label'>
         <label>
