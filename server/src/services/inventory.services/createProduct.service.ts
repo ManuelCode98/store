@@ -3,7 +3,8 @@ import { pool } from "../../connectionDb";
 const createProductService = async( req:any, res:any )=>{ 
 
     const {
-        product_name, 
+        product_name,
+        brand, 
         model, 
         category, 
         description, 
@@ -23,7 +24,8 @@ const createProductService = async( req:any, res:any )=>{
         
         const { rows } = await pool.query(`
             INSERT INTO product ( 
-                product_name, 
+                product_name,
+                brand, 
                 model, 
                 category, 
                 description, 
@@ -38,11 +40,12 @@ const createProductService = async( req:any, res:any )=>{
                 material,
                 supplier_name
             ) 
-            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14 )
+            VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15 )
             RETURNING *
         `,
         [
-            product_name, 
+            product_name,
+            brand, 
             model, 
             category, 
             description, 

@@ -6,12 +6,13 @@ const CreateProduct = () => {
  
   const [formData, setFormData] = useState({
     product_name:'', 
+    brand: '',
     model:'', 
     category:'Deporte', 
     description:'', 
-    size:'', 
+    size:'Unica', 
     color:'', 
-    gender:'',
+    gender:'Dama',
     purchase_price:'',
     sale_price:'',
     amount:0,
@@ -43,6 +44,18 @@ const CreateProduct = () => {
             value={formData.product_name}
             onChange={handleChange}
             required
+          />
+        </label>
+      </div>
+
+      <div className='container-label'>
+        <label>
+          Marca:  <br/>
+          <input
+            type="text"
+            name="brand"
+            value={formData.brand}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -109,7 +122,6 @@ const CreateProduct = () => {
             <label>
               Talla: <br/>
               <select name="size" value={ formData.size } onChange={handleChange}>
-                <option value=''></option>
                 <option value='Unica'>Unica</option>
                 <option value='XS'>XS</option>
                 <option value='S'>S</option>
@@ -162,7 +174,6 @@ const CreateProduct = () => {
             <label>
               Género: <br/>
               <select name="gender" value={formData.gender} onChange={handleChange}>
-                <option value=''></option>
                 <option value="dama">Dama</option>
                 <option value="caballero">Caballero</option>
               </select>

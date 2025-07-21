@@ -23,18 +23,21 @@ interface ProductData {
 const UpdateProduct = ( productDataState:any ) => {
 
   // const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
+  console.log(productDataState);
+  
   const [formData, setFormData] = useState<any>({
     id: 0,
-    product_name: '', 
+    product_name: '',
+    brand: '', 
     model:'', 
     category:'Deporte', 
     description:'', 
-    size:'', 
+    size:'Unica', 
     color:'', 
-    gender:'',
+    gender:'Dama',
     purchase_price:0,
     sale_price:0,
-    amount:'',
+    amount:0,
     photo:'',
     asset: true,
     material:'',
@@ -67,6 +70,18 @@ const UpdateProduct = ( productDataState:any ) => {
             value={formData.product_name}
             onChange={handleChange}
             required
+          />
+        </label>
+      </div>
+
+      <div className='container-label'>
+        <label>
+          Marca:  <br/>
+          <input
+            type="text"
+            name="brand"
+            value={formData.brand}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -133,7 +148,6 @@ const UpdateProduct = ( productDataState:any ) => {
             <label>
               Talla: <br/>
               <select name="size" value={ formData.size } onChange={handleChange}>
-                <option value=''></option>
                 <option value='Unica'>Unica</option>
                 <option value='XS'>XS</option>
                 <option value='S'>S</option>
@@ -167,16 +181,28 @@ const UpdateProduct = ( productDataState:any ) => {
         </label>
       </div>
 
-      <div className='container-label'>
+      { formData.category === 'Deporte'
+        ?
+          <div className='container-label'>
+            <label>
+              Género: <br/>
+              <select name="gender" value={formData.gender} onChange={handleChange}>
+                <option value="dama">Dama</option>
+                <option value="caballero">Caballero</option>
+              </select>
+            </label>
+          </div>
+        : ''
+      }
+      {/* <div className='container-label'>
         <label>
           Género: <br/>
           <select name="gender" value={formData.gender} onChange={handleChange}>
-            <option value=''></option>
             <option value="dama">Dama</option>
             <option value="caballero">Caballero</option>
           </select>
         </label>
-      </div>
+      </div> */}
 
       <div className='container-label'>
         <label>

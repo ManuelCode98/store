@@ -5,16 +5,11 @@ const conexionImgbb = `https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df46
 
 const savePhotoOfTheNewProductService = async( productPhotoOtherState:File )=>{ 
     
-    // Todo arreglar la condicion que entre cuando el productPhotoOtherState no sea un objeto
-    console.log(productPhotoOtherState);
-    
     if( typeof( productPhotoOtherState ) === 'string' ){
-        console.log('entre al string');
         return { url: productPhotoOtherState, success: true }
     }
 
     if( !productPhotoOtherState ){
-        console.log('entre al undefined');
         return { url:'', success: false }
     }
 

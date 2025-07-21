@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import getProductsService from './services/getProducts.service';
 import './SearchBar.css';
 import UpdateProduct from '../UpdateProduct/UpdateProduct';
+import DeleteProduct from '../DeleteProduct/DeleteProduct';
 
 // Definimos el tipo de los datos que vamos a buscar
 interface Item {
@@ -38,28 +39,29 @@ const SearchBar: React.FC = () => {
 
   // Funcion para llenar el formulario con el elemento que se clico
   const setAllData = ( { currentTarget }:any, asset:boolean, id:number )=>{
-console.log(currentTarget);
+  // console.log(currentTarget);
 
     const selectAllTd = currentTarget.querySelectorAll('td');
     
     const photo = selectAllTd[0].querySelector('img').src;
     const product_name = selectAllTd[1].innerText; 
-    const model = selectAllTd[2].innerText;
-    const color = selectAllTd[3].innerText;
-    const size = selectAllTd[4].innerText;
-    const gender = selectAllTd[5].innerText;
-    const sale_price = selectAllTd[6].innerText;
+    const brand = selectAllTd[2].innerText; 
+    const model = selectAllTd[3].innerText;
+    const color = selectAllTd[4].innerText;
+    const size = selectAllTd[5].innerText;
+    const gender = selectAllTd[6].innerText;
     const purchase_price = selectAllTd[7].innerText;
-    const category = selectAllTd[8].innerText;
-    const description = selectAllTd[9].innerText;
-    const material = selectAllTd[10].innerText;
-    const supplier_name = selectAllTd[11].innerText;
-    const amount = selectAllTd[12].innerText;
+    const sale_price = selectAllTd[8].innerText;
+    const amount = selectAllTd[9].innerText;
+    const category = selectAllTd[10].innerText;
+    const description = selectAllTd[11].innerText;
+    const material = selectAllTd[12].innerText;
+    const supplier_name = selectAllTd[14].innerText;
 
-    console.log(selectAllTd[11]);
+    // console.log(selectAllTd[11]);
     
 
-    setProductDataState({id, photo, product_name, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name})
+    setProductDataState({id, photo, product_name, brand, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name})
     // const productData = {
 
     // }
@@ -96,7 +98,7 @@ console.log(currentTarget);
   const resetSearch = ()=>{
     setTerminoBusqueda('')
   }
-console.log(resultados);
+// console.log(resultados);
 
   return (
     <div style={{ padding: '20', fontFamily: 'Arial' }}>
@@ -117,17 +119,18 @@ console.log(resultados);
             <tr>
               <th>Foto</th>
               <th>Producto</th>
+              <th>Marca</th>
               <th>Modelo</th>
               <th>Color</th>
               <th>Talla</th>
               <th>Genero</th>
               <th>Precio de compra</th>
               <th>Precio de venta</th>
+              <th>Unidades</th>
               <th>Categoria</th>
               <th>Descripción</th>
               <th>Material</th>
               <th>Activo</th>
-              <th>Unidades</th>
               <th>Proveedor</th>
             </tr>
           </thead>
@@ -138,21 +141,20 @@ console.log(resultados);
                   <tr key={ item.id } onClick={ (e)=> {setAllData( e, item.asset, item.id ), resetSearch()} }>
                     <td><img src={item.photo} width={'50'} height={'50'} /></td>
                     <td>{item.product_name}</td>
+                    <td>{item.brand}</td>
                     <td>{item.model}</td>
                     <td>{item.color}</td>
                     <td>{item.size}</td>
                     <td>{item.gender}</td>
                     <td>{item.purchase_price}</td>
                     <td>{item.sale_price}</td>
+                    <td>{item.amount}</td>
                     <td>{item.category}</td>
                     <td>{item.description}</td>
                     <td>{item.material}</td>
-                    {/* <td>{item.asset ? 'Activo' : 'Agotado' }</td> */}
                     <td>{item.asset === true ? 'Activo' : 'Agotado' }</td>
-                    <td>{item.amount}</td>
                     <td>{item.supplier_name}</td>
                   </tr>
-                  // <li key={item.id}>{`${item.product_name} ${ item.model } ${ item.color }`}</li>
                 ))
               ) : (
                 <span>No se encontraron resultados.</span>
@@ -164,6 +166,7 @@ console.log(resultados);
       }
       
       <UpdateProduct {...productDataState} />
+      <DeleteProduct {...productDataState} />
         
       {/* </ul> */}
     </div>

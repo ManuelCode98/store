@@ -1,0 +1,32 @@
+
+.form {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    width: 50%;
+    border: 1px solid red; 
+    padding-top: 1rem;
+    place-items: center;
+}
+
+.container-label {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+input, textarea {
+    width: 95%;
+}
+
+.input-checkbox {
+    width: auto;
+}
+
+.button-submit {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    grid-column: span 2;
+}

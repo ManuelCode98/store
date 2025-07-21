@@ -1,6 +1,7 @@
 CREATE TABLE product (
     id SERIAL PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
+    brand VARCHAR(100),
     model VARCHAR(50),
     category VARCHAR(50),
     description TEXT,
