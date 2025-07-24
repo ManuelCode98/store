@@ -66,7 +66,7 @@ const createProductService = async( req:any, res:any )=>{
         res.status(404).send(`No pudimos crear el producto...`);
         return
     }
-    res.status(200).json( {message: `Se creo el producto de manera exitosa `,data:rows[0]} );
+    res.status(200).json( {message: `Se creo un producto de manera exitosa `,data:rows[0]} );
 
     } catch (error) {
         res.status(409).send( error ) ;
