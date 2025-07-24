@@ -4,27 +4,31 @@ import './UpdateProduct.css';
 
 interface ProductData {
   product_name: string, 
-    model:string, 
-    category:string, 
-    description:string, 
-    size:string, 
-    color:string, 
-    gender:string,
-    purchase_price:number,
-    sale_price:number,
-    amount:string,
-    photo:string,
-    asset:boolean,
-    material:string,
-    supplier_name:string
+  brand: string,
+  model:string, 
+  category:string, 
+  description:string, 
+  size:string, 
+  color:string, 
+  gender:string,
+  purchase_price:number,
+  sale_price:number,
+  amount:string,
+  photo:string,
+  asset:boolean,
+  material:string,
+  supplier_name:string,
 }
 
-// photo:string, product_name:string, model:string, color:string, size:string, gender:string, sale_price:string, category:string, material:string, asset:string, amount:string
-const UpdateProduct = ( productDataState:any ) => {
 
-  // const { photo, product_name, model, color, size, gender, sale_price, purchase_price, category, material, asset, amount, supplier_name } = productDataState;
-  console.log(productDataState);
-  
+interface UpdateProductProps {
+  updateSearchBarProducts: React.Dispatch<React.SetStateAction<any>>;
+  currentProduct: ProductData
+}
+
+const UpdateProduct = ( { updateSearchBarProducts, currentProduct}:UpdateProductProps ) => {
+
+
   const [formData, setFormData] = useState<any>({
     id: 0,
     product_name: '',
@@ -45,8 +49,8 @@ const UpdateProduct = ( productDataState:any ) => {
   });
     
   useEffect(()=>{
-    setFormData( productDataState )
-  }, [productDataState])
+    setFormData( currentProduct )
+  }, [currentProduct])
  
   const handleChange = (e:any) => {
    
@@ -60,7 +64,7 @@ const UpdateProduct = ( productDataState:any ) => {
   };
 
   return (
-    <form className='form' onSubmit={ (e)=> updateProductService( e, formData ) } encType="multipart/form-data">
+    <form className='form' onSubmit={ (e)=> updateProductService( e, updateSearchBarProducts, formData ) } encType="multipart/form-data">
       <div className='container-label'>
         <label>
           Nombre del producto:  <br/>
@@ -194,15 +198,6 @@ const UpdateProduct = ( productDataState:any ) => {
           </div>
         : ''
       }
-      {/* <div className='container-label'>
-        <label>
-          Género: <br/>
-          <select name="gender" value={formData.gender} onChange={handleChange}>
-            <option value="dama">Dama</option>
-            <option value="caballero">Caballero</option>
-          </select>
-        </label>
-      </div> */}
 
       <div className='container-label'>
         <label>

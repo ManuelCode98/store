@@ -3,7 +3,7 @@ import createProductService from './services/createProduct.service';
 import './CreateProduct.css';
 
 const CreateProduct = () => {
- 
+
   const [formData, setFormData] = useState({
     product_name:'', 
     brand: '',
@@ -15,7 +15,7 @@ const CreateProduct = () => {
     gender:'Dama',
     purchase_price:'',
     sale_price:'',
-    amount:0,
+    amount:1,
     photo:'',
     asset:true,
     material:'',

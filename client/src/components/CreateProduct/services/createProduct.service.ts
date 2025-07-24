@@ -25,7 +25,7 @@ const createProductService = async( e:any, formData:any ) => {
         amount,
         asset,
         material,
-        supplier_name 
+        supplier_name,
     } = formData;
 
     if( category !== 'Deporte' ){
@@ -56,7 +56,7 @@ const createProductService = async( e:any, formData:any ) => {
         photo: url,
         asset: assetValue,
         material,
-        supplier_name  
+        supplier_name,
     }, { timeout: 5000 })
 
     if( data ){

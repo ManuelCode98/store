@@ -1,8 +1,10 @@
 import { http, swal } from '../../../../index';
 import { savePhotoOfTheNewProductService } from '../../../services/photo/savePhotoOfTheNewProduct.service';
+import getProductsService from '../../SearchBar/services/getProducts.service';
 
 
-const updateProductService = async( e:any, formData:any ) => {
+
+const updateProductService = async( e:any, updateSearchBarProducts:Function, formData:any ) => {
 
     e.preventDefault();
 
@@ -19,15 +21,12 @@ const updateProductService = async( e:any, formData:any ) => {
         model, 
         category, 
         description, 
-        size, 
-        color, 
-        gender,
+        color,
         purchase_price,
         sale_price,
         amount,
-        asset,
         material,
-        supplier_name 
+        supplier_name
     } = formData;
 
     if( category !== 'Deporte' ){
@@ -58,10 +57,14 @@ const updateProductService = async( e:any, formData:any ) => {
         photo: url,
         asset: assetValue,
         material,
-        supplier_name  
+        supplier_name, 
     }, { timeout: 5000 })
 
     if( data ){
+
+        // const products = await http.get(`${urlConnectionBanckend}api/products-inventory`, { timeout: 5000 })
+
+        updateSearchBarProducts( await getProductsService() )
         swal.fire({
             text: data.message,
             icon:'success',

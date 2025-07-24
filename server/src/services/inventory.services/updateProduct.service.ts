@@ -19,7 +19,7 @@ const updateProductService = async( req:any, res:any )=>{
         photo,
         asset,
         material,
-        supplier_name
+        supplier_name,
     } = req.body;
 
 
@@ -28,7 +28,7 @@ const updateProductService = async( req:any, res:any )=>{
             UPDATE product 
             SET 
             product_name = $1, 
-            brand = $2
+            brand = $2,
             model = $3, 
             category = $4, 
             description = $5, 

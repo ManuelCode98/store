@@ -1,4 +1,5 @@
 import { createProductService } from "../../services/inventory.services/createProduct.service";
+import { deleteProductsService } from "../../services/inventory.services/deleteProducts.service";
 import { deleteProductService } from "../../services/inventory.services/deleteProduct.service";
 import { getProductService } from "../../services/inventory.services/getProduct.service";
 import { getProductsService } from "../../services/inventory.services/getProducts.service";
@@ -29,6 +30,11 @@ const controllers = {
 
     deleteProduct: (req:any, res:any)=>{
         deleteProductService( req, res )            
+
+    },
+
+    deleteProducts: (req:any, res:any)=>{
+        deleteProductsService( req, res )            
 
     }
 

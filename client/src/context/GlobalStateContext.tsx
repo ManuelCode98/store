@@ -10,7 +10,7 @@ const globalStateContext = createContext<any>( undefined );
 
 
 // Todo hay que utilizar el estado global para que al crear, actualizar o borrar un producto tambien se vean los cambios en 
-// Los productos que estan cargados en la barra de busqueda
+// Todo Los productos que estan cargados en la barra de busqueda
 const GlobalStateProvider = ({ children }:any )=>{
     const [ searchProductsState, setSearchProductsState ] = useState('');
 

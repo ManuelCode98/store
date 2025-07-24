@@ -14,5 +14,6 @@ CREATE TABLE product (
     photo TEXT,
     asset BOOLEAN DEFAULT TRUE,
     material VARCHAR(100),
-    supplier_name VARCHAR(100)
+    supplier_name VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 );

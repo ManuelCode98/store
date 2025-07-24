@@ -8,19 +8,21 @@ import DeleteProduct from '../DeleteProduct/DeleteProduct';
 interface Item {
   id: number;
   product_name: string;
-  model: string, 
-  category: string, 
-  description: string, 
-  amount: number,
-  asset: boolean,
-  gender: string,
-  material: string,
-  photo: string,
-  purchase_price: number
-  sale_price: number,
-  size: string,
-  color: string,
-  supplier_name: string
+  brand: string;
+  model: string; 
+  category: string; 
+  description: string; 
+  amount: number;
+  asset: boolean;
+  gender: string;
+  material: string;
+  photo: string;
+  purchase_price: number;
+  sale_price: number;
+  size: string;
+  color: string;
+  supplier_name: string;
+  created_at: string;
 }
 
 const SearchBar: React.FC = () => {
@@ -57,11 +59,12 @@ const SearchBar: React.FC = () => {
     const description = selectAllTd[11].innerText;
     const material = selectAllTd[12].innerText;
     const supplier_name = selectAllTd[14].innerText;
+    const created_at = selectAllTd[15].innerText;
 
     // console.log(selectAllTd[11]);
     
 
-    setProductDataState({id, photo, product_name, brand, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name})
+    setProductDataState({id, photo, product_name, brand, model, color, size, gender, sale_price, purchase_price, category, description, material, asset, amount, supplier_name, created_at})
     // const productData = {
 
     // }
@@ -80,7 +83,6 @@ const SearchBar: React.FC = () => {
     
 
   }
-  
 
   // Función para filtrar los resultados
   const filtrarResultados = ( products: Item[], termino: string): Item[] => {
@@ -132,6 +134,7 @@ const SearchBar: React.FC = () => {
               <th>Material</th>
               <th>Activo</th>
               <th>Proveedor</th>
+              <th>Creado</th>
             </tr>
           </thead>
           <tbody>
@@ -154,6 +157,7 @@ const SearchBar: React.FC = () => {
                     <td>{item.material}</td>
                     <td>{item.asset === true ? 'Activo' : 'Agotado' }</td>
                     <td>{item.supplier_name}</td>
+                    <td>{item.created_at}</td>
                   </tr>
                 ))
               ) : (
@@ -165,8 +169,9 @@ const SearchBar: React.FC = () => {
       : ''
       }
       
-      <UpdateProduct {...productDataState} />
-      <DeleteProduct {...productDataState} />
+      {/* { productDataState && <UpdateProduct set={ setAllProductsState } currentProduct={ productDataState } /> } */}
+      <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />
+      {/* <DeleteProduct data = { {setAllProductsState, productDataState} } /> */}
         
       {/* </ul> */}
     </div>
