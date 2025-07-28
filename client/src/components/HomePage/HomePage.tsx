@@ -54,9 +54,9 @@ const HomePage = () => {
           {/* <img src='https://i.ibb.co/ZzY9tXHH/pexels-thelazyartist-1271428.jpg' /> */}
           <h1 className='home-page-title'>FITNESS MATI</h1>
         </div>
-        <div>
-          <video className='video' controls autoPlay>
-            <source src={'./video/video-deportivo.mp4'} width={100}/>
+        <div className='container-video'>
+          <video className='video' autoPlay muted loop>
+            <source src={'./video/video-deportivo.mp4'} />
           </video>
         </div>
         <div className="container-show-product">{ productData.length && productData.map( (product:ProductData) => (
