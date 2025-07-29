@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, type ChangeEventHandler } from 'react';
 import { useNavigate } from 'react-router-dom';
 import verifyTokenService from './services/verifyToken.service';
 import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from '../SearchBar/SearchBar';
+import type UpdateProduct from '../UpdateProduct/UpdateProduct';
+
 
 const Dashboard: React.FC = () => {
 
+  const [ option, setOption ] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,28 +26,39 @@ const Dashboard: React.FC = () => {
 
     tokenIsValid();
 
-    
   }, []);
 
+  const handleOptions = ( option:any )=>{ 
 
+    const valueInput = option.target.value;
+
+    setOption( valueInput );
+
+  };
 
 
   return (
-    <>
+    <div className='container-dashboard'>
       <h1 style={ { 'color':'red', 'textAlign':'center', 'fontWeight':'bold' } }>Welcome</h1>
 
-      <select>
-        <option>Que quieres hacer </option>
-        <option>Añadir un producto al inventario</option>
-        <option>Actualizar un producto del inventario</option>
-        <option>Eliminar un producto al inventario</option>
-        <option></option>
-        <option>Hacer una venta</option>
-        <option></option>
-        <option>Actualizar una venta</option>
-        <option>Eliminar una venta una venta</option>
+      <select onChange={ handleOptions } >
+        <option value={''}>Que quieres hacer </option>
+        <option value={'Añadir un producto al inventario'}>Añadir un producto al inventario</option>
+        <option value={'Actualizar un producto del inventario'}>Actualizar un producto del inventario</option>
+        <option value={'Eliminar un producto del inventario'}>Eliminar un producto del inventario</option>
+        <option value={'Hacer una venta'}>Hacer una venta</option>
+        <option value={''}></option>
+        <option value={'Actualizar una venta'}>Actualizar una venta</option>
+        <option value={'Eliminar una venta una venta'}>Eliminar una venta una venta</option>
       </select>
-    </>
+
+      <div className='container-show-component'>
+        { option === 'Actualizar un producto del inventario' 
+          ? <SearchBar/>
+          : ''
+        }
+      </div>
+    </div>
     
   )
 

@@ -54,12 +54,41 @@ const HomePage = () => {
           {/* <img src='https://i.ibb.co/ZzY9tXHH/pexels-thelazyartist-1271428.jpg' /> */}
           <h1 className='home-page-title'>FITNESS MATI</h1>
         </div>
-        <div className='container-video'>
+        <div className='container-section-video'>
           <video className='video' autoPlay muted loop>
-            <source src={'./video/video-deportivo.mp4'} />
+            <source className='source' src={'./video/video-deportivo.mp4'} />
           </video>
+
+          <div className="container-show-products">{ productData.length && productData.map( (product:ProductData) => (
+            <div key={ product.id } className='container-product' >
+
+              <div className='container-product-photo'>
+                <img src={ product.photo } />
+              </div>
+
+              <div className='container-data'>
+                <span className='home-page-product-name'>{ product.product_name }</span>
+                <span className='home-page-model'>{ product.model }</span>
+                <div className="rating" aria-label="Calificación: 4.5 de 5 estrellas">
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star"></i>
+                  <i className="fas fa-star-half-alt"></i>
+                  <span className="rating-text">{/*4.5*/}</span>
+                </div>
+                <span className='home-page-sale-price'>cop { product.sale_price }</span>
+              </div>
+
+              <div className='container-button-buy' >
+                <span className='button-name-buy' >Comprar</span>
+              </div>
+
+            </div>
+            ) ) }
+          </div>
         </div>
-        <div className="container-show-product">{ productData.length && productData.map( (product:ProductData) => (
+        {/* <div className="container-show-product">{ productData.length && productData.map( (product:ProductData) => (
           <div key={ product.id } className='container-product-photo' >
             <img src={ product.photo } />
             <div className='container-name-and-price'>
@@ -71,7 +100,7 @@ const HomePage = () => {
             </div>
           </div>
         ) ) }
-        </div>
+        </div> */}
 
         <div className='icons-contact'>
           <a href={linkWhatsapp} target='_blank'><img className='icon whatsapp' src={'./icon/whatsapp.png'}/></a>
