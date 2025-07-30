@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from '../../../index';
 import loginService from './services/login.service';
 import './Login.css';
+import Header from '../Header/Header';
 
 
 interface LoginFormData {
@@ -67,6 +68,9 @@ const Login: React.FC = () => {
 
   return (
     <div >
+      <>
+        <Header/>
+      </>
       <div >
         <div>
           <h2 >

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from '../../../index';
 import registerService from './services/register.service';
 import './Register.css';
+import Header from '../Header/Header';
 
 interface RegisterFormData {
   name: string;
@@ -95,6 +96,9 @@ const Register: React.FC = () => {
 
   return (
     <div >
+      <>
+        <Header/>
+      </>
       <div >
         <div>
           <h2 >

@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
 
       if( status !== 200 || statusText === 'Unauthorized' ){
 
-        navigate('/');
+        navigate('/login');
         return
       }
 
