@@ -7,6 +7,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Register from './components/Register/Register';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './components/HomePage/HomePage';
+import RecoverPassword from './components/RecoverPassword/RecoverPassword';
+
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='/recover-password' element={<RecoverPassword/>}/>
         </Routes>
       </Router>
       {/* <Login/> */}

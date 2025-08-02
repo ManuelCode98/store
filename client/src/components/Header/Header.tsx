@@ -1,10 +1,12 @@
-import { Link, useLocation } from '../../../index';
+import { Link, useLocation, useNavigate } from '../../../index';
+import logOutAlertService from '../../services/logOut.services/logOutAlert.service';
+
 
 const Header = () => {
 
     const location = useLocation();
     const currentPaht = location.pathname;
-
+    const navigate = useNavigate();
 
 
   return (
@@ -16,6 +18,7 @@ const Header = () => {
                     { currentPaht === '/login' ? '' : <Link to={'/login'} >Iniciar sesión</Link> }
                     { currentPaht === '/register' ? '' : <Link to={'/register'}>Crear cuenta</Link> }
                     { currentPaht === '/dashboard' ? '' : <Link to={'/dashboard'}>Dashboard</Link> }  
+                    { currentPaht === '/dashboard' ? <Link to={''} onClick={ () => logOutAlertService( navigate ) }>Cerrar sesión</Link> : '' }  
                 </>
                 :   
                 <>

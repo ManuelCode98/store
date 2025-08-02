@@ -1,0 +1,7 @@
+
+CREATE TABLE token_blacklist (
+    id SERIAL PRIMARY KEY,
+    token TEXT NOT NULL UNIQUE,
+    expires_at BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

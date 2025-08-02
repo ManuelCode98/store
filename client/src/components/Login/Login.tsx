@@ -160,6 +160,14 @@ const Login: React.FC = () => {
               Regístrate aquí
             </Link>
           </p>
+          <p>
+            ¿Olvidaste tu contraseña?{' '}
+            <Link 
+              to="/recover-password" 
+            >
+              Recuperala aqui
+            </Link>
+          </p>
         </div>
       </div>
     </div>

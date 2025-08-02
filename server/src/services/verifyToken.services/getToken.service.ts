@@ -17,6 +17,7 @@ const getTokenService = async( req:any, res:any )=>{
             return res.status(401).json({ 
                 message: 'Acceso denegado. No se proporcionó token.' 
             });
+
         }
 
         jwt.verify(token, JWT_SECRET, (err:any, decoded:any) => {
@@ -33,10 +34,14 @@ const getTokenService = async( req:any, res:any )=>{
         
             // Guardar datos del usuario en la request
             req.user = decoded;
+            res.status(200).json({ authorization:'authorized', statusText:'Forbidden' })
         });
+
+        
 
     } catch (error) {
         console.log(error);
+        res.status(409).send('Error en el servidor');
     }
 
     // try {

@@ -6,6 +6,7 @@ import { cors } from './src/allImports';
 import { registerRoute } from './src/routes/register.routes/register.routes';
 import { loginRoute } from './src/routes/login.routes/login.routes';
 import { verifyTokenRoute } from './src/routes/verifyToken.routes/verifyToken.route';
+import { logOutRoute } from './src/routes/logOut.routes/logOut.route';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use( '/api', productIncomeRoute );
 app.use( '/api', registerRoute );
 app.use( '/api', loginRoute );
 app.use( '/api', verifyTokenRoute );
+app.use( '/api', logOutRoute );
 
 app.listen( port, ()=>{
 

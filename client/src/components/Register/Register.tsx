@@ -11,6 +11,7 @@ interface RegisterFormData {
   email: string;
   password: string;
   confirmPassword: string;
+  verificationCode: number;
 }
 
 const Register: React.FC = () => {
@@ -18,11 +19,13 @@ const Register: React.FC = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    verificationCode:0, 
   });
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [buttonVerificationCode, setButtonVerificationCode] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -178,25 +181,67 @@ const Register: React.FC = () => {
                 placeholder="••••••••"
               />
             </div>
+
+            <div>
+              
+              {
+                !buttonVerificationCode 
+                ? 
+                <>
+                  <button onClick={ ()=> setButtonVerificationCode( true ) }>
+                    Obtener el codigo de verificación
+                  </button><br/>
+                </>
+                :
+                <>
+                  <label htmlFor="verificationCode" >
+                    Escribe el codigo de verificacion que llego a tu correo
+                  </label>
+                  <input
+                    id="verificationCode"
+                    name="verificationCode"
+                    type="number"
+                    required
+                    value={ formData.verificationCode}
+                    onChange={handleChange}
+                    placeholder="2223"
+                  />
+                  <button>
+                    Enviar nuevamente
+                  </button>
+                </>
+
+              }
+              
+            </div>
+
           </div>
 
           <div>
-            <button
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? (
-                <span >
-                  {/* <svg >
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg> */}
-                  Creando cuenta...
-                </span>
-              ) : (
-                'Crear Cuenta'
-              )}
-            </button>
+            {
+             formData.verificationCode < 1 
+              ? ''
+              : 
+              <>
+                <button
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <span >
+                      {/* <svg >
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg> */}
+                      Creando cuenta...
+                    </span>
+                  ) : (
+                    'Crear Cuenta'
+                  )}
+                </button>
+              </>
+            }
+            
           </div>
         </form>
 
