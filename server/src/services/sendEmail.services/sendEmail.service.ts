@@ -36,6 +36,7 @@ const sendEmailService = ( emailClient:string, code:string ) => {
                 console.log(error);
                 return
             }
+console.log(info);
 
             return { message: `Se envio el codigo al correo ${emailClient}` }
         })

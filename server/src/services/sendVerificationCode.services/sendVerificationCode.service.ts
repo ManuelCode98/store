@@ -44,8 +44,8 @@ const sendVerificationCodeService = async( req:any, res:any )=>{
 
     if( rowCount && rowCount > 0 ){
 
-        res.status(200).json( {message: `Se guardo el email con su respectivo codigo`} );
         const { status }:any = sendEmailService( email, generatedCode );
+        res.status(200).json( {message: `Se guardo el email con su respectivo codigo`} );
 
         if( status === 200 ){
             // Todo aca implementaremos la logica para seguir con la creacion de la cuenta

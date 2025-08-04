@@ -14,5 +14,5 @@ CREATE TABLE product_income (
     photo TEXT,
     material VARCHAR(100),
     supplier_name VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

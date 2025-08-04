@@ -5,6 +5,7 @@ interface User {
     name: string;
     email: string;
     password: string;
+    code: number
 }
 
 const registerService = async( formData:User ) => {
@@ -16,8 +17,8 @@ const registerService = async( formData:User ) => {
     let loading: boolean = false;
 
     try {
-          const { name, email, password } = formData;
-          const response = await http.post(`${urlConnectionBanckend}api/register`, { name, email, password });
+          const { name, email, password, code } = formData;
+          const response = await http.post(`${urlConnectionBanckend}api/register`, { name, email, password, code });
         //   const { token, user } = response.data;
           
           // Guardar token en localStorage
