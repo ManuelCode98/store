@@ -8,7 +8,7 @@ const registerService = async( req:any, res:any )=>{
         name,
         email,
         password, 
-        code
+        verificationCode
     } = req.body;
 
     const saltRounds:number = 12;
@@ -18,37 +18,92 @@ const registerService = async( req:any, res:any )=>{
         
         // Todo aca va la consulta a la base de datos para saber si el codigo que me envia el front es igual al que esta guardado en db 
 
-        if( code.length < 6 ){
+        const result = await pool.query(`SELECT * FROM verification_code WHERE email = $1`,[email])
 
-            return { message: 'Codigo incompleto' }
+        if( result.rows[0].length === 0 ){
+
+            console.log(`Este correo ${email} no tiene ningun codigo asignado`);
+
+            return res.status(400).json({
+                success: false,
+                message: `Este correo ${email} no tiene ningun codigo asignado`
+            });
         }
 
-        const result = pool.query(`SELECT * FROM verification_code WHERE email = $1`,[email])
-
-        console.log( result );
         
-    //     const { rowCount } = await pool.query(`
-    //         INSERT INTO users ( 
-    //             name,
-    //             email,
-    //             password,
-    //             code
-    //         ) 
-    //         VALUES ( $1, $2, $3 )
-    //     `,
-    //     [
-    //         name,
-    //         email,
-    //         hashedPassword
-    //     ]
-    // );
-    
-    // if( rowCount && rowCount > 0 ){
+        const storedCodeRecord = result.rows[0]; // El registro guardado
 
-    //     res.status(200).json( {message: `Se creo el usuario de manera exitosa `} );
-    //     return
-    // }
-    // res.status(404).send(`No pudimos crear el usuario...`);
+       // Comparar el código
+        if ( storedCodeRecord.code !== verificationCode ){
+
+            const resultAttempts = await pool.query(`SELECT * FROM verification_code WHERE email = $1`,[email])
+
+
+            if( resultAttempts.rows[0].attempts < 3 ){
+
+                const attempts:number = resultAttempts.rows[0].attempts + 1;
+
+                await pool.query(`UPDATE verification_code SET attempts=$2 WHERE email = $1`,[email, attempts])
+
+                return res.status(400).json({
+                    success: false,
+                    message: 'Código incorrecto'
+                });
+
+
+            }
+
+            if( resultAttempts.rows[0].attempts >= 3 ){
+
+               return res.status(400).json({
+                    success: false,
+                    message: 'Muchos intentos a la hora de ingresar el codigo de validacion espera 10 minutos'
+                }); 
+
+            }
+                
+
+                
+        }
+            
+
+        // Verificar expiración (si usas TIMESTAMPTZ)
+        if (new Date(storedCodeRecord.expires_at) < new Date()) {
+            return res.status(400).json({
+                success: false,
+                message: 'El código ha expirado. Solicita uno nuevo.'
+            });
+        }
+
+        
+        const { rowCount } = await pool.query(`
+            INSERT INTO users ( 
+                name,
+                email,
+                password
+            ) 
+            VALUES ( $1, $2, $3 )
+        `,
+        [
+            name,
+            email,
+            hashedPassword
+        ]
+    );
+    
+    if( rowCount && rowCount > 0 ){
+
+        // 🧹 Eliminar el código usado
+        await pool.query('DELETE FROM verification_code WHERE email = $1', [email]);
+
+        res.json({
+        success: true,
+        message: 'Código verificado y usuario creado'
+        });
+        return
+    }
+
+    res.status(404).send(`No pudimos crear el usuario...`);
 
     } catch (error) {
         res.status(409).send( error ) ;

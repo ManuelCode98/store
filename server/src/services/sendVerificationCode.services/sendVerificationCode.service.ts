@@ -16,7 +16,7 @@ const sendVerificationCodeService = async( req:any, res:any )=>{
     // Generar código aleatorio
     const expirationTimeMs = 3 * 60 * 1000; // 180,000 ms
     const expires_at =  new Date(Date.now() + expirationTimeMs );
-    
+
     // const generatedCode = Math.floor(100000 + Math.random() * 900000).toString(); // 6 dígitos
     try {
 
@@ -31,7 +31,7 @@ const sendVerificationCodeService = async( req:any, res:any )=>{
             ) 
             VALUES ( $1, $2, $3, NOW(), 0 )
             ON CONFLICT (email) 
-            DO UPDATE SET code = $2, created_at = NOW(), expires_at = $3, attempts = 0,
+            DO UPDATE SET code = $2, created_at = NOW(), expires_at = $3, attempts = 0
         `,
         [
             email,
@@ -39,18 +39,12 @@ const sendVerificationCodeService = async( req:any, res:any )=>{
             expires_at
         ]
     );
-    
-    console.log(rowCount);
 
     if( rowCount && rowCount > 0 ){
 
-        const { status }:any = sendEmailService( email, generatedCode );
+        sendEmailService( email, generatedCode );
         res.status(200).json( {message: `Se guardo el email con su respectivo codigo`} );
 
-        if( status === 200 ){
-            // Todo aca implementaremos la logica para seguir con la creacion de la cuenta
-            // Todo si el codigo es enviado correctamente
-        }
         return
     }
     res.status(404).send(`No pudimos crear el usuario...`);

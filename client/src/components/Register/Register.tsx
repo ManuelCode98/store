@@ -24,8 +24,9 @@ const Register: React.FC = () => {
     verificationCode:NaN, 
   });
   const [error, setError] = useState<string>('');
-  const [success, setSuccess] = useState<string>('');
+  const [success, setSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
   const [buttonVerificationCode, setButtonVerificationCode] = useState<boolean>(false);
   const navigate = useNavigate();
   
@@ -59,9 +60,10 @@ const Register: React.FC = () => {
     
     setLoading(true);
     setError('');
-    setSuccess('');
+    setSuccess(false);
+    setMessage('');
 
-    const { success, error, loading } =  await registerService( formData );
+    const { success, error, loading, message } =  await registerService( formData );
 
     setSuccess(success);
 
@@ -69,11 +71,14 @@ const Register: React.FC = () => {
 
     setLoading(loading);
 
+    setMessage(message);
+
+    console.log({ success, error, loading, message});
     // Redirigir después de 1 segundo
-    if( success === '¡Cuenta creada exitosamente!' ){
+    if( success ){
 
       setTimeout(() => {
-        navigate('/');
+        navigate('/login');
       }, 1000);
     }
   };
@@ -195,7 +200,7 @@ const Register: React.FC = () => {
                     required
                     value={ formData.verificationCode}
                     onChange={handleChange}
-                    placeholder="2223"
+                    placeholder="220223"
                   />
                   <button onClick={ verificationCode }>
                     Enviar nuevamente
@@ -243,7 +248,7 @@ const Register: React.FC = () => {
           <p>
             ¿Ya tienes una cuenta?{' '}
             <Link 
-              to="/" 
+              to="/login" 
             >
               Inicia sesión aquí
             </Link>

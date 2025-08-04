@@ -8,6 +8,10 @@ const createVerificationCodeService = async( email:string ) => {
 
     try {
         
+        const emailIsValid:boolean = email.includes('@');
+
+        if( !emailIsValid ) return;
+
         const createCode = await http.post(`${urlConnectionBanckend}api/send-email`,{ email })
 
         if( !createCode ) return

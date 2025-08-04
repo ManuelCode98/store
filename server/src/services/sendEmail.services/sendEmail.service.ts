@@ -1,10 +1,6 @@
 import { nodemailer } from "../../allImports";
 
 
-interface ReturndSendCode {
-    status: number; 
-    sendCode: any;
-}
 
 const sendEmailService = ( emailClient:string, code:string ) => {
  
@@ -36,14 +32,10 @@ const sendEmailService = ( emailClient:string, code:string ) => {
                 console.log(error);
                 return
             }
-console.log(info);
 
             return { message: `Se envio el codigo al correo ${emailClient}` }
         })
 
-        const data:ReturndSendCode = { status: 200, sendCode }
-
-        return data;
 
     } catch (error) {
 
