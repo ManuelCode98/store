@@ -7,6 +7,7 @@ import { registerRoute } from './src/routes/register.routes/register.routes';
 import { loginRoute } from './src/routes/login.routes/login.routes';
 import { verifyTokenRoute } from './src/routes/verifyToken.routes/verifyToken.route';
 import { logOutRoute } from './src/routes/logOut.routes/logOut.route';
+import { sendVerificationCodeRoute } from './src/routes/sendVerificationCode.routes/sendVerificationCode.route';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use( '/api', registerRoute );
 app.use( '/api', loginRoute );
 app.use( '/api', verifyTokenRoute );
 app.use( '/api', logOutRoute );
+app.use( '/api', sendVerificationCodeRoute );
 
 app.listen( port, ()=>{
 

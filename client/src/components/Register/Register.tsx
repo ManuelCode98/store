@@ -5,6 +5,7 @@ import { Link, useNavigate } from '../../../index';
 import registerService from './services/register.service';
 import './Register.css';
 import Header from '../Header/Header';
+import createVerificationCodeService from './services/createVerificationCode.service';
 
 interface RegisterFormData {
   name: string;
@@ -20,13 +21,15 @@ const Register: React.FC = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    verificationCode:0, 
+    verificationCode:NaN, 
   });
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [buttonVerificationCode, setButtonVerificationCode] = useState<boolean>(false);
   const navigate = useNavigate();
+  
+  const emailContainsAtSign:boolean = formData.email.includes( '@' );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -73,29 +76,16 @@ const Register: React.FC = () => {
         navigate('/');
       }, 1000);
     }
-    // try {
-    //   const { name, email, password } = formData;
-    //   const response = await http.post('/api/auth/register', { name, email, password });
-    //   const { token, user } = response.data;
-      
-    //   // Guardar token en localStorage
-    //   localStorage.setItem('token', token);
-    //   localStorage.setItem('user', JSON.stringify(user));
-      
-    //   setSuccess('¡Cuenta creada exitosamente!');
-      
-    //   // Redirigir después de 1 segundo
-    // //   setTimeout(() => {
-    // //     navigate('/dashboard');
-    // //   }, 1000);
-    // } catch (err: any) {
-    //   setError(err.response?.data?.message || 'Error al crear la cuenta');
-    // } finally {
-    //   setLoading(false);
-    // }
   };
 
-    
+  const verificationCode = ()=>{ 
+
+    setButtonVerificationCode( true );
+
+    // Todo aca va el servicio que envia el email para generar el codigo a dicho email
+    createVerificationCodeService( formData.email );
+  };
+
 
   return (
     <div >
@@ -112,13 +102,13 @@ const Register: React.FC = () => {
           </p>
         </div>
         
-        {(error || success) && (
+        {/* {(error || success) && (
           <div className={`border px-4 py-3 rounded-lg ${
             error ? 'bg-red-50 border-red-200 text-red-700' : 'bg-green-50 border-green-200 text-green-700'
           }`}>
             {error || success}
           </div>
-        )}
+        )} */}
 
         <form className='container-form-register' onSubmit={handleSubmit}>
           <div >
@@ -182,13 +172,14 @@ const Register: React.FC = () => {
               />
             </div>
 
-            <div>
-              
+            { emailContainsAtSign 
+              ?  
+              <div>
               {
                 !buttonVerificationCode 
                 ? 
                 <>
-                  <button onClick={ ()=> setButtonVerificationCode( true ) }>
+                  <button onClick={ verificationCode }>
                     Obtener el codigo de verificación
                   </button><br/>
                 </>
@@ -206,7 +197,7 @@ const Register: React.FC = () => {
                     onChange={handleChange}
                     placeholder="2223"
                   />
-                  <button>
+                  <button onClick={ verificationCode }>
                     Enviar nuevamente
                   </button>
                 </>
@@ -214,6 +205,9 @@ const Register: React.FC = () => {
               }
               
             </div>
+            : ''
+            }
+            
 
           </div>
 

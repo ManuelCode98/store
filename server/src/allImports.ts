@@ -5,6 +5,7 @@ import cors from 'cors';
 import bcryptjs from 'bcryptjs';
 import { Jwt } from 'jsonwebtoken';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
 
 
 export {
@@ -18,4 +19,5 @@ export {
     cors,
     bcryptjs,
     jwt,
+    nodemailer,
 }
