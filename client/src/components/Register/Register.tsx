@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { useNavigate, Link } from 'react-router-dom';
 // import axios from 'axios';
-import { Link, useNavigate } from '../../../index';
+import { Link, swal, useNavigate } from '../../../index';
 import registerService from './services/register.service';
 import './Register.css';
 import Header from '../Header/Header';
@@ -74,6 +74,7 @@ const Register: React.FC = () => {
     setMessage(message);
 
     console.log({ success, error, loading, message});
+
     // Redirigir después de 1 segundo
     if( success ){
 

@@ -1,4 +1,4 @@
-import { http } from '../../../../index';
+import { http, swal } from '../../../../index';
 
 
 interface User {
@@ -24,26 +24,27 @@ const registerService = async( formData:User ) => {
           // if( !name && !email && !password && !verificationCode ) return;
 
           const response = await http.post(`${urlConnectionBanckend}api/register`, { name, email, password, verificationCode });
-        //   const { token, user } = response.data;
-          
-          // Guardar token en localStorage
-        //   localStorage.setItem('token', token);
-        //   localStorage.setItem('user', JSON.stringify(user));
-          
-        //   setSuccess('¡Cuenta creada exitosamente!');
+        
           success = response.data.success;
           message = response.data.message;
-          // Redirigir después de 1 segundo
-        //   setTimeout(() => {
-        //     navigate('/dashboard');
-        //   }, 1000);
+
+          swal.fire({
+            title: 'Genial',
+            text: `${error}`, 
+            icon: 'success'
+          })
 
         } catch (err: any) {
         
             error = err.response?.data?.message || 'Error al crear la cuenta';
-        //   setError(err.response?.data?.message || 'Error al crear la cuenta');
+
+            swal.fire({
+              title: 'Error',
+              text: `${error}`,
+              icon: 'error' 
+            })
+       
         } finally {
-        //   setLoading(false);
           loading = false;
         }
 
