@@ -7,7 +7,9 @@ import { registerRoute } from './src/routes/register.routes/register.routes';
 import { loginRoute } from './src/routes/login.routes/login.routes';
 import { verifyTokenRoute } from './src/routes/verifyToken.routes/verifyToken.route';
 import { logOutRoute } from './src/routes/logOut.routes/logOut.route';
-import { sendVerificationCodeRoute } from './src/routes/sendVerificationCode.routes/sendVerificationCode.route';
+import { sendVerificationCodeCreateUserRoute } from './src/routes/sendVerificationCodeCreateUser.routes/sendVerificationCodeCreateUser.route';
+import { recoverPasswordRoute } from './src/routes/recoverPassword.routes/recoverPassword.route';
+import { sendVerificationCodeRecoverPasswordRoute } from './src/routes/sendVerificationCodeRecoverPassword.routes/sendVerificationCodeRecoverPassword.route';
 
 dotenv.config();
 
@@ -23,7 +25,9 @@ app.use( '/api', registerRoute );
 app.use( '/api', loginRoute );
 app.use( '/api', verifyTokenRoute );
 app.use( '/api', logOutRoute );
-app.use( '/api', sendVerificationCodeRoute );
+app.use( '/api', sendVerificationCodeCreateUserRoute );
+app.use( '/api', sendVerificationCodeRecoverPasswordRoute );
+app.use( '/api', recoverPasswordRoute );
 
 app.listen( port, ()=>{
 

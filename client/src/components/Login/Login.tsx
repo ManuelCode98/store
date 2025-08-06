@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-// import http from 'axios';
 import { Link, useNavigate } from '../../../index';
 import loginService from './services/login.service';
 import './Login.css';
@@ -20,8 +17,6 @@ const Login: React.FC = () => {
   });
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [statusText, setStatusText] = useState('');
-  const [status, setStatus] = useState(409);
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,34 +31,16 @@ const Login: React.FC = () => {
     setLoading(true);
     setError('');
 
-
-    const { statusText, status, success, error , loading } = await loginService( formData );
+    const { statusText, status, error , loading } = await loginService( formData );
 
     setError(error);
     setLoading(loading);
-    // setStatusText(statusText);
-    // setStatus(status);
     
     if( statusText === 'OK' && status === 200 ){
 
       navigate('/dashboard');
     }
 
-  //   try {
-  //     const response = await http.post('/api/auth/login', formData);
-  //     const { token, user } = response.data;
-      
-  //     // Guardar token en localStorage
-  //     localStorage.setItem('token', token);
-  //     localStorage.setItem('user', JSON.stringify(user));
-      
-  //       // Redirigir al dashboard
-  //       // navigate('/dashboard');
-  //   } catch (err: any) {
-  //     setError(err.response?.data?.message || 'Error al iniciar sesión');
-  //   } finally {
-  //     setLoading(false);
-  //   }
   };
 
   return (
@@ -72,24 +49,21 @@ const Login: React.FC = () => {
         <Header/>
       </>
       <div >
-        <div>
-          <h2 >
+        <div className='container-login-title'>
+          <h2 className='login-title'>
             Iniciar Sesión
           </h2>
-          <p >
-            Accede a tu cuenta
-          </p>
         </div>
         
         {error && (
-          <div >
+          <div className='login-message-error'>
             {error}
           </div>
         )}
 
         <form className='container-form-login' onSubmit={handleSubmit}>
           <div >
-            <div>
+            <div className='container-email'>
               <label htmlFor="email" >
                 Correo electrónico
               </label>
@@ -104,7 +78,7 @@ const Login: React.FC = () => {
               />
             </div>
             
-            <div>
+            <div className='container-password'>
               <label htmlFor="password" >
                 Contraseña
               </label>
@@ -120,39 +94,31 @@ const Login: React.FC = () => {
             </div>
           </div>
 
-          {/* <div className="flex items-center justify-between">
-            <div className="text-sm">
-              <Link 
-                to="/forgot-password" 
-                className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
-              >
-                ¿Olvidaste tu contraseña?
-              </Link>
-            </div>
-          </div> */}
-
-          <div>
+          <div className='container-login-button'>
             <button
               type="submit"
               disabled={loading}
             >
               {loading ? (
-                <span >
-                  <svg >
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <span className="loading-spinner-container">
+                  <svg className="loading-spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle className="spinner-circle" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path className="spinner-path" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                   Iniciando...
                 </span>
               ) : (
-                'Iniciar Sesión'
+                <span className="login-spinner-container">
+                  Iniciar Sesión
+                </span>
+                
               )}
             </button>
           </div>
         </form>
 
-        <div >
-          <p>
+        <div className='container-login-options'>
+          <p className='paragraph login-register'>
             ¿No tienes cuenta?{' '}
             <Link 
               to="/register" 
@@ -160,12 +126,12 @@ const Login: React.FC = () => {
               Regístrate aquí
             </Link>
           </p>
-          <p>
+          <p className='paragraph login-recover-password'>
             ¿Olvidaste tu contraseña?{' '}
             <Link 
               to="/recover-password" 
             >
-              Recuperala aqui
+              Recuperala aquí
             </Link>
           </p>
         </div>

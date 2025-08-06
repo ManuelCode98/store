@@ -1,4 +1,4 @@
-import { nodemailer } from "../../allImports";
+import { nodemailer } from "../../../allImports";
 
 
 
@@ -20,9 +20,9 @@ const sendEmailService = ( emailClient:string, code:string ) => {
         const mailOptions = {
             from: emailUser,
             to: emailClient,
-            subject: 'Codigo de verificación para la creacion de cuenta en FITNESS MATI',
+            subject: 'Codigo de verificación para la recuperacion de contraseña en FITNESS MATI',
             text: `
-            Copia y pega este codigo para seguir con la creacion de la cuenta ${code}, si no lo solicitaste ignora este mensaje...
+            Copia y pega este codigo para seguir con la recuperacion de la contraseña ${code}, si no lo solicitaste ignora este mensaje...
             `
         };
 

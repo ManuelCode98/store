@@ -5,7 +5,7 @@ import { Link, swal, useNavigate } from '../../../index';
 import registerService from './services/register.service';
 import './Register.css';
 import Header from '../Header/Header';
-import createVerificationCodeService from './services/createVerificationCode.service';
+import createVerificationCodeService from '../../services/verificationCode.services/createVerificationCode.service';
 
 interface RegisterFormData {
   name: string;

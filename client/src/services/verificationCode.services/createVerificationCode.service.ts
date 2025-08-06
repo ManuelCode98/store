@@ -1,4 +1,4 @@
-import { http } from '../../../../index';
+import { http } from '../../../index';
 
 
 
@@ -12,7 +12,7 @@ const createVerificationCodeService = async( email:string ) => {
 
         if( !emailIsValid ) return;
 
-        const createCode = await http.post(`${urlConnectionBanckend}api/send-email`,{ email })
+        const createCode = await http.post(`${urlConnectionBanckend}api/send-email-recover-password`,{ email })
 
         if( !createCode ) return
 

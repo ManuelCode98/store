@@ -1,9 +1,9 @@
 import { bcryptjs } from '../../allImports';
 import { pool } from "../../connectionDb";
-import sendEmailService from '../sendEmail.services/sendEmail.service';
+import sendEmailService from './helpers/sendEmail.service';
 
 
-const sendVerificationCodeService = async( req:any, res:any )=>{ 
+const sendVerificationCodeCreateUserService = async( req:any, res:any )=>{ 
     //Todo modificar todo esto para enviar el codigo por correo y validarlo para recibir
     // Todo desde el frontEnd el mismo codigo que se envio desde el backend
     const {
@@ -47,7 +47,7 @@ const sendVerificationCodeService = async( req:any, res:any )=>{
 
         return
     }
-    res.status(404).send(`No pudimos crear el usuario...`);
+    res.status(404).send(`No pudimos enviar el codigo de verificación...`);
 
     } catch (error) {
         res.status(409).send( error ) ;
@@ -87,5 +87,5 @@ const sendVerificationCodeService = async( req:any, res:any )=>{
 };
 
 export {
-    sendVerificationCodeService
+    sendVerificationCodeCreateUserService
 }

@@ -1,4 +1,4 @@
-import { sendVerificationCodeService } from "../../services/sendVerificationCode.services/sendVerificationCode.service";
+import { sendVerificationCodeCreateUserService } from "../../services/register.services/sendVerificationCodeCreateUser.service";
 
 
 
@@ -15,8 +15,8 @@ const controllers = {
 
     // }, 
 
-    sendVerificationCode: (req:any, res:any)=>{
-        sendVerificationCodeService( req, res );     
+    sendVerificationCodeCreateUser: (req:any, res:any)=>{
+        sendVerificationCodeCreateUserService( req, res );     
 
     }, 
 
