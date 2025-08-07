@@ -57,44 +57,47 @@ const DeleteProduct = ( productDataState:any ) => {
   };
 
   return (
-    <form className='form' onSubmit={ (e)=> setFormData( deleteProductService( e, formData ) ) } encType="multipart/form-data">
-      <div className='photo-delete-product'>
-        <img src={formData.photo} width={'300'} height={'300'} />
-      </div>
+    <>
+      <h2 className='delete-product-Subtitle'>Que producto quieres elliminar del inventario</h2>
+      <form className='form' onSubmit={ (e)=> setFormData( deleteProductService( e, formData ) ) } encType="multipart/form-data">
+        <div className='photo-delete-product'>
+          <img src={formData.photo} width={'300'} height={'300'} />
+        </div>
 
-      <div className='product-name-delete-product'>
-        Producto
-        {formData.product_name}
-      </div>
+        <div className='product-name-delete-product'>
+          Producto
+          {formData.product_name}
+        </div>
 
-      <div className='product-name-delete-product'>
-        Marca
-        {formData.model}
-      </div>
+        <div className='product-name-delete-product'>
+          Marca
+          {formData.model}
+        </div>
 
-      <div className='product-name-delete-product'>
-        Modelo
-        {formData.model}
-      </div>
+        <div className='product-name-delete-product'>
+          Modelo
+          {formData.model}
+        </div>
 
-      <div className='product-name-delete-product'>
-        Proveedor
-        {formData.supplier_name}
-      </div>
+        <div className='product-name-delete-product'>
+          Proveedor
+          {formData.supplier_name}
+        </div>
 
-      <div className='product-name-delete-product'>
-        Precio de compra
-        {formData.purchase_price}
-      </div>
+        <div className='product-name-delete-product'>
+          Precio de compra
+          {formData.purchase_price}
+        </div>
 
-      <div className='product-name-delete-product'>
-        Precio de venta
-        {formData.sale_price}
-      </div>
+        <div className='product-name-delete-product'>
+          Precio de venta
+          {formData.sale_price}
+        </div>
 
-      
-      <button className='button-submit' type="submit">Eliminar</button>
-    </form>
+        
+        <button className='button-submit' type="submit">Eliminar</button>
+      </form>
+    </>
   );
 };
 

@@ -1,4 +1,131 @@
 
-.container-form-register {
-    width: 50%;
+
+.container-register-title {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    margin-bottom: 1rem;
 }
+
+.register-message-error {
+    text-align: center;
+    width: 100%;
+    color: red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.container-form-register {
+    width: 25%;
+    margin: 0 auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container-register-name,
+.container-register-email, 
+.container-register-password,
+.container-register-confirm-password{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.container-register-code {
+    margin-bottom: 1rem;
+}
+/* .container-recover-password-insert-code > label{
+    
+} */
+.container-register-insert-code > input{
+    margin-bottom: 1rem;
+}
+
+/* .container-recover-password-button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+} */
+
+.register-spinner-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.loading-spinner-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #6b7280;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.loading-spinner {
+  width: 22px;
+  height: 22px;
+  animation: spin 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.spinner-circle {
+  stroke: #e0e7ff; 
+  stroke-width: 3;
+}
+
+.spinner-path {
+  fill: #a5b4fc; 
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Suavizado extra en dispositivos con preferencia por reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+}
+
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-spinner-container {
+  animation: fade-in-out 1.5s ease-in-out infinite;
+}
+
+
+.container-register-options {
+    width: 100%;
+    text-align: center;
+}
+
+.paragraph {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 1rem;
+}
+.paragraph > a {
+    text-decoration: none;
+    color: red;
+}
+
+input {
+    padding: 0.3rem;
+}
+

@@ -5,6 +5,7 @@ import CreateProduct from '../CreateProduct/CreateProduct';
 import SearchBar from '../SearchBar/SearchBar';
 import type UpdateProduct from '../UpdateProduct/UpdateProduct';
 import Header from '../Header/Header';
+import './Dashboard.css';
 
 
 const Dashboard: React.FC = () => {
@@ -54,9 +55,9 @@ const Dashboard: React.FC = () => {
       </>
      { successDashboard === true ? 
       <>
-        <h1 style={ { 'color':'red', 'textAlign':'center', 'fontWeight':'bold' } }>Welcome</h1>
+        <h1 className='dashboard-title'>Welcome</h1>
 
-        <select onChange={ handleOptions } >
+        <select className='select-options' onChange={ handleOptions } >
           <option value={''}>Que quieres hacer </option>
           <option value={'Añadir un producto al inventario'}>Añadir un producto al inventario</option>
           <option value={'Actualizar un producto del inventario'}>Actualizar un producto del inventario</option>
@@ -68,8 +69,8 @@ const Dashboard: React.FC = () => {
         </select>
 
         <div className='container-show-component'>
-          { option === 'Actualizar un producto del inventario' 
-            ? <SearchBar/>
+          { option !== ''
+            ? <SearchBar option={option}  />
             : ''
           }
         </div> 

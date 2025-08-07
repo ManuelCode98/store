@@ -3,6 +3,7 @@ import getProductsService from './services/getProducts.service';
 import './SearchBar.css';
 import UpdateProduct from '../UpdateProduct/UpdateProduct';
 import DeleteProduct from '../DeleteProduct/DeleteProduct';
+import CreateProduct from '../CreateProduct/CreateProduct';
 
 // Definimos el tipo de los datos que vamos a buscar
 interface Item {
@@ -25,13 +26,18 @@ interface Item {
   created_at: string;
 }
 
-const SearchBar: React.FC = () => {
+interface Options{
+  option: string;
+}
+
+const SearchBar = ( {option}:Options ) => {
   // Datos de ejemplo
 
   const [ allProductsState, setAllProductsState ] = useState([]);
   const [terminoBusqueda, setTerminoBusqueda] = useState<string>('');
   const [ productDataState, setProductDataState ] = useState<any>({})
   const [ productActiveState, setProductActiveState ] = useState(true)
+
 
   useEffect(() => {
     const products = async()=> setAllProductsState( await getProductsService() )
@@ -104,7 +110,6 @@ const SearchBar: React.FC = () => {
 
   return (
     <div style={{ padding: '20', fontFamily: 'Arial' }}>
-      <h2>Que producto quieres actualizar del inventario</h2>
       <input
         type="text"
         placeholder="Buscar..."
@@ -167,10 +172,33 @@ const SearchBar: React.FC = () => {
           </tbody>
         </table>
       : ''
-      }
-      
+      }      
+
       {/* { productDataState && <UpdateProduct set={ setAllProductsState } currentProduct={ productDataState } /> } */}
-      <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />
+      { option === 'Añadir un producto al inventario' 
+        ? <CreateProduct />  
+        : ''
+      }
+      { option === 'Actualizar un producto del inventario'
+        ? <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />  
+        : ''
+      }
+      { option === 'Eliminar un producto del inventario'
+        ? <DeleteProduct data = { {setAllProductsState, productDataState} } />
+        : ''
+      }
+      { option === 'Hacer una venta'
+        ? <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />  
+        : ''
+      }
+      { option === 'Actualizar una venta'
+        ? <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />  
+        : ''
+      }
+      { option === 'Eliminar una venta una venta'
+        ? <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />  
+        : ''
+      }
       {/* <DeleteProduct data = { {setAllProductsState, productDataState} } /> */}
         
       {/* </ul> */}
