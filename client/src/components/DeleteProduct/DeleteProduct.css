@@ -1,32 +1,49 @@
 
-.form {
+.form-delete-product {
     display: grid;
     margin: 0 auto;
     grid-template-columns: repeat(2, 1fr);
     width: 50%;
-    border: 1px solid red; 
     padding-top: 1rem;
     place-items: center;
 }
 
-.container-label {
+.data-delete-product {
     display: flex;
     flex-direction: column;
-    justify-items: center;
-    width: 50%;
+    width: 100%;
+    margin-left: 5rem;
+}
+
+.photo-delete-product > img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+.data-delete-product > div {
     margin-bottom: 1rem;
+    
 }
-
-input, textarea {
-    width: 95%;
-}
-
-.input-checkbox {
-    width: auto;
+.data-delete-product > div >span {
+    color: red;
+    
 }
 
 .button-submit {
     padding: 0.5rem;
     margin-bottom: 1rem;
     grid-column: span 2;
+    outline: none;
+    border: none;
 }
+.button-submit:active {
+    transform: scale( 1.2, 1.2);
+}
+.button-delete {
+    color: white;
+    background-color: rgb(241, 51, 51);
+    box-shadow: 2px 2px 5px black, 3px 3px 5px black, 4px 4px 5px black;
+    margin-top: 1rem;
+}
+

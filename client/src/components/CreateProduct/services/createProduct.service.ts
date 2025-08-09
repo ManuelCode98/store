@@ -1,8 +1,9 @@
 import { http, swal } from '../../../../index';
 import { savePhotoOfTheNewProductService } from '../../../services/photo/savePhotoOfTheNewProduct.service';
+import getProductsService from '../../SearchBar/services/getProducts.service';
 
 
-const createProductService = async( e:any, formData:any ) => {
+const createProductService = async( e:any, formData:any, setAllProductsState:Function ) => {
 
     e.preventDefault();
 
@@ -69,6 +70,8 @@ const createProductService = async( e:any, formData:any ) => {
             confirmButtonColor:'#01a503'
         })
     } 
+
+    setAllProductsState( await getProductsService() )
 }
 
 export default createProductService

@@ -1,8 +1,9 @@
 import { http, swal } from '../../../../index';
 import { savePhotoOfTheNewProductService } from '../../../services/photo/savePhotoOfTheNewProduct.service';
+import getProductsService from '../../SearchBar/services/getProducts.service';
 
 
-const deleteProductService = async( e:any, formData:any ) => {
+const deleteProductService = async( e:any, formData:any, setAllProductsState:Function ) => {
 
     e.preventDefault();
     const { id } = formData;
@@ -23,26 +24,9 @@ const deleteProductService = async( e:any, formData:any ) => {
                 timer: 3000,
                 confirmButtonColor:'#01a503'
             })
+            
+            setAllProductsState( await getProductsService() )
         }   
-
-        return {
-            id: 0,
-            product_name: '',
-            brand: '', 
-            model:'', 
-            category:'Deporte', 
-            description:'', 
-            size:'Unica', 
-            color:'', 
-            gender:'Dama',
-            purchase_price:0,
-            sale_price:0,
-            amount:0,
-            photo:'',
-            asset: true,
-            material:'',
-            supplier_name:'',
-        }
 
    } catch (error:any) {
     

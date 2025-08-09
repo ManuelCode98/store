@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import createProductService from './services/createProduct.service';
 import './CreateProduct.css';
+import type { ProductState } from '../../interfaces/ProductState.interfce';
 
-const CreateProduct = () => {
+const CreateProduct = ({setAllProductsState, productDataState}:ProductState) => {
 
   const [formData, setFormData] = useState({
     product_name:'', 
@@ -36,7 +37,7 @@ const CreateProduct = () => {
   return (
     <>
       <h2 className='create-product-Subtitle'>Que producto quieres añadir al inventario</h2>
-      <form className='form' onSubmit={ (e)=> createProductService( e, formData ) } encType="multipart/form-data">
+      <form className='form' onSubmit={ (e)=> createProductService( e, formData, setAllProductsState ) } encType="multipart/form-data">
         <div className='container-label'>
           <label>
             Nombre de la producto:  <br/>

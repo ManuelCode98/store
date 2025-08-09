@@ -176,7 +176,7 @@ const SearchBar = ( {option}:Options ) => {
 
       {/* { productDataState && <UpdateProduct set={ setAllProductsState } currentProduct={ productDataState } /> } */}
       { option === 'Añadir un producto al inventario' 
-        ? <CreateProduct />  
+        ? <CreateProduct { ...{setAllProductsState, productDataState} }/>  
         : ''
       }
       { option === 'Actualizar un producto del inventario'
@@ -184,7 +184,7 @@ const SearchBar = ( {option}:Options ) => {
         : ''
       }
       { option === 'Eliminar un producto del inventario'
-        ? <DeleteProduct data = { {setAllProductsState, productDataState} } />
+        ? <DeleteProduct { ...{setAllProductsState, productDataState} } />
         : ''
       }
       { option === 'Hacer una venta'
