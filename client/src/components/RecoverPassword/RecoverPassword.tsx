@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from '../../../index';
 import Header from '../Header/Header';
-import createVerificationCodeService from '../../services/verificationCode.services/createVerificationCode.service';
+import verificationCodeRecoverPasswordService from '../../services/createVerificationCode.services/verificationCodeRecoverPassword.service';
 import recoverPasswordService from './services/recoverPassword.service';
 import './RecoverPassword.css';
 
@@ -100,7 +100,7 @@ const RecoverPassword = () => {
     setButtonVerificationCode( true );
 
     // Todo aca va el servicio que envia el email para generar el codigo a dicho email
-    createVerificationCodeService( formData.email );
+    verificationCodeRecoverPasswordService( formData.email );
   };
 
 

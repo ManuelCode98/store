@@ -62,7 +62,9 @@ const HomePage = () => {
             <div key={ product.id } className='container-product' >
 
               <div className='container-product-photo'>
-                <img src={ product.photo } />
+                <a href={`product/${product.id}`} target='_blank'>
+                  <img className='product-photo' src={ product.photo } />
+                </a>
               </div>
 
               <div className='container-data'>

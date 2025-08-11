@@ -11,7 +11,7 @@ const sendVerificationCodeCreateUserService = async( req:any, res:any )=>{
         email,
     } = req.body;
 
-    // console.log(req.body);
+    console.log(req.body);
 
     // Generar código aleatorio
     const expirationTimeMs = 3 * 60 * 1000; // 180,000 ms
@@ -41,6 +41,7 @@ const sendVerificationCodeCreateUserService = async( req:any, res:any )=>{
     );
 
     if( rowCount && rowCount > 0 ){
+console.log(rowCount);
 
         sendEmailService( email, generatedCode );
         res.status(200).json( {message: `Se guardo el email con su respectivo codigo`} );

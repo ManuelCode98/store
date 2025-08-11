@@ -5,7 +5,7 @@ import { Link, swal, useNavigate } from '../../../index';
 import registerService from './services/register.service';
 import './Register.css';
 import Header from '../Header/Header';
-import createVerificationCodeService from '../../services/verificationCode.services/createVerificationCode.service';
+import verificationCodeCreateUserService from '../../services/createVerificationCode.services/verificationCodeCreateUser.service';
 
 interface RegisterFormData {
   name: string;
@@ -103,7 +103,7 @@ const Register: React.FC = () => {
     setButtonVerificationCode( true );
 
     // Todo aca va el servicio que envia el email para generar el codigo a dicho email
-    createVerificationCodeService( formData.email );
+    verificationCodeCreateUserService( formData.email );
   };
 
 

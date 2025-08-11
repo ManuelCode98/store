@@ -8,6 +8,7 @@ import Register from './components/Register/Register';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './components/HomePage/HomePage';
 import RecoverPassword from './components/RecoverPassword/RecoverPassword';
+import ProductPage from './components/ProductPage/ProductPage';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/recover-password' element={<RecoverPassword/>}/>
+          <Route path='/product/:id' element={<ProductPage/>}/>
         </Routes>
       </Router>
       {/* <Login/> */}

@@ -93,7 +93,7 @@ const Header = () => {
                         <Link to={'/login'} >Iniciar sesión</Link>
                         <Link to={'/register'}>Crear cuenta</Link>
                     </>
-            }          
+            }         
         </div>
   )
 }
