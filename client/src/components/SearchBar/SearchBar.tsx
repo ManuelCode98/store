@@ -1,30 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import getProductsService from './services/getProducts.service';
 import './SearchBar.css';
 import UpdateProduct from '../UpdateProduct/UpdateProduct';
 import DeleteProduct from '../DeleteProduct/DeleteProduct';
 import CreateProduct from '../CreateProduct/CreateProduct';
+import { useEffect, useState } from 'react';
+
+import type { SearchProductData } from '../../interfaces/SearchProduct.interface';
+import Bill from '../Bill/Bill';
 
 // Definimos el tipo de los datos que vamos a buscar
-interface Item {
-  id: number;
-  product_name: string;
-  brand: string;
-  model: string; 
-  category: string; 
-  description: string; 
-  amount: number;
-  asset: boolean;
-  gender: string;
-  material: string;
-  photo: string;
-  purchase_price: number;
-  sale_price: number;
-  size: string;
-  color: string;
-  supplier_name: string;
-  created_at: string;
-}
+
 
 interface Options{
   option: string;
@@ -91,7 +76,7 @@ const SearchBar = ( {option}:Options ) => {
   }
 
   // Función para filtrar los resultados
-  const filtrarResultados = ( products: Item[], termino: string): Item[] => {
+  const filtrarResultados = ( products: SearchProductData[], termino: string): SearchProductData[] => {
     if (!termino.trim()) return products;
 
     const terminoMinusculas = termino.toLowerCase();
@@ -188,7 +173,7 @@ const SearchBar = ( {option}:Options ) => {
         : ''
       }
       { option === 'Hacer una venta'
-        ? <UpdateProduct updateSearchBarProducts={ setAllProductsState } currentProduct={ productDataState } />  
+        ? <Bill productData={productDataState}/>  
         : ''
       }
       { option === 'Actualizar una venta'

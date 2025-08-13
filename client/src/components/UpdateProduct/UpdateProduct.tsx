@@ -1,29 +1,13 @@
 import { useEffect, useState } from 'react';
 import updateProductService from './services/updateProduct.service';
 import './UpdateProduct.css';
+import type { ProductDataUpdate } from '../../interfaces/ProductDataUpdate.interface';
 
-interface ProductData {
-  product_name: string, 
-  brand: string,
-  model:string, 
-  category:string, 
-  description:string, 
-  size:string, 
-  color:string, 
-  gender:string,
-  purchase_price:number,
-  sale_price:number,
-  amount:string,
-  photo:string,
-  asset:boolean,
-  material:string,
-  supplier_name:string,
-}
 
 
 interface UpdateProductProps {
   updateSearchBarProducts: React.Dispatch<React.SetStateAction<any>>;
-  currentProduct: ProductData
+  currentProduct: ProductDataUpdate
 }
 
 const UpdateProduct = ( { updateSearchBarProducts, currentProduct}:UpdateProductProps ) => {
